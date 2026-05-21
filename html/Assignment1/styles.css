@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 90%;
+  margin: auto;
+   border: 1px solid #000;
+}
+a{
+     text-decoration: none;
+}
+.box{
+    padding: 70px;
+}
+.cmn-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: darkgreen;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+header nav .nav-items{
+    background-color: crimson;
+    border-bottom: 1px solid #000;
+    float: right;
+    width: 33.33%;
+    text-align: center;
+    padding:10px;
+    color: #fff;
+}
+footer{
+    background-color: darkgreen;
+    padding: 25px;
+    color: #fff;
+}
