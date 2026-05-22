@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <title>My Learning Journal | CSS &amp; HTML Showcase</title>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A complete webpage demonstrating HTML semantic tags, formatting tags, CSS color properties, and all three types of CSS styling." />
+  <meta name="keywords" content="HTML, CSS, semantic tags, formatting tags, inline CSS, internal CSS, external CSS, web development" />
+  <meta name="author" content="Trupti Kavtalwar" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="My Learning Journal | CSS & HTML Showcase" />
+  <meta property="og:description" content="Exploring HTML & CSS concepts beautifully." />
+  <meta property="og:type" content="website" />
+
+  <style>
+
+    /* ── Google Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+    /* ── CSS Variables (Color Properties) ── */
+    :root {
+      /* Named & Hex colors */
+      --color-bg:           #fdf6ee;
+      --color-bg2:          #fff9f2;
+      --color-sidebar:      #2d2013;
+      --color-card:         #ffffff;
+
+      /* RGB / RGBA */
+      --color-shadow:       rgba(45, 32, 19, 0.10);
+      --color-overlay:      rgba(255, 255, 255, 0.85);
+
+      /* HSL colors */
+      --color-primary:      hsl(28, 85%, 45%);   /* warm amber */
+      --color-primary-l:    hsl(28, 100%, 95%);
+      --color-secondary:    hsl(195, 70%, 38%);  /* teal */
+      --color-secondary-l:  hsl(195, 80%, 94%);
+      --color-accent:       hsl(340, 80%, 52%);  /* rose */
+      --color-accent-l:     hsl(340, 100%, 96%);
+      --color-green:        hsl(145, 60%, 36%);
+      --color-green-l:      hsl(145, 70%, 94%);
+      --color-purple:       hsl(265, 65%, 52%);
+      --color-purple-l:     hsl(265, 80%, 96%);
+
+      /* Text */
+      --color-text:         #2d2013;
+      --color-muted:        #7a6652;
+      --color-light-text:   #f5ede0;
+
+      /* Border */
+      --color-border:       #e8d9c5;
+
+      /* Gradient */
+      --grad-warm: linear-gradient(135deg, hsl(28,100%,95%), hsl(340,100%,96%));
+      --grad-cool: linear-gradient(135deg, hsl(195,80%,94%), hsl(265,80%,96%));
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      background-color: var(--color-bg);            /* color property: background-color */
+      color: var(--color-text);                      /* color property: color */
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── Page Layout ── */
+    .page {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
+
+    /* ═══════════════════════════════════
+       HEADER  (semantic tag)
+    ═══════════════════════════════════ */
+    header {
+      grid-column: 1 / -1;
+      background-color: var(--color-sidebar);        /* background-color */
+      color: var(--color-light-text);                /* color */
+      padding: 1.4rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 3px solid var(--color-primary);
+      animation: slideDown 0.5s ease both;
+    }
+
+    @keyframes slideDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    header .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: hsl(28, 100%, 75%);                     /* HSL color */
+    }
+
+    header .brand span {
+      color: #ffffff;                                 /* named / hex color */
+    }
+
+    /* Navigation (semantic tag) */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: rgba(245, 237, 224, 0.80);              /* RGBA color */
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+
+    nav a:hover { color: hsl(28, 100%, 75%); }       /* HSL hover */
+
+    /* ═══════════════════════════════════
+       ASIDE / SIDEBAR  (semantic tag)
+    ═══════════════════════════════════ */
+    aside {
+      background-color: #fef3e2;                     /* hex color */
+      border-right: 1px solid var(--color-border);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      animation: fadeIn .6s ease .1s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateX(-18px); }
+      to   { opacity:1; transform:translateX(0); }
+    }
+
+    .sidebar-section h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--color-primary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: .4rem;
+      margin-bottom: .8rem;
+    }
+
+    .sidebar-section ul { list-style: none; }
+    .sidebar-section li {
+      padding: .3rem 0;
+      font-size: .88rem;
+      color: var(--color-muted);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .sidebar-section li::before {
+      content: '▸';
+      color: var(--color-primary);
+    }
+
+    /* Color swatch demo */
+    .color-demo { display: flex; flex-direction: column; gap: .5rem; }
+    .swatch {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .78rem; color: var(--color-muted);
+    }
+    .swatch-box {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    /* CSS type badge */
+    .css-badge {
+      display: inline-block;
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .2rem .55rem; border-radius: 99px;
+    }
+    .css-inline   { background-color: hsl(340,80%,90%); color: hsl(340,80%,35%); }
+    .css-internal { background-color: hsl(28,90%,88%);  color: hsl(28,80%,30%);  }
+    .css-external { background-color: hsl(195,70%,88%); color: hsl(195,70%,25%); }
+
+    .type-list { display: flex; flex-direction: column; gap: .55rem; }
+    .type-item {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: .5rem .75rem;
+      font-size: .8rem;
+      color: var(--color-muted);
+    }
+    .type-item strong { display: block; color: var(--color-text); margin-bottom: .15rem; }
+
+    /* ═══════════════════════════════════
+       MAIN  (semantic tag)
+    ═══════════════════════════════════ */
+    main {
+      padding: 2.5rem 2.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      animation: fadeUp .6s ease .15s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── Section cards ── */
+    section {
+      background-color: var(--color-card);           /* background-color */
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 4px 24px var(--color-shadow);    /* shadow with rgba */
+    }
+
+    /* Section heading */
+    section > h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--color-text);
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: .65rem;
+    }
+
+    section > h2 .tag-chip {
+      font-family: 'Fira Code', monospace;
+      font-size: .62rem; font-weight: 500;
+      background-color: hsl(28, 85%, 92%);           /* HSL background */
+      color: hsl(28, 80%, 35%);                      /* HSL color */
+      padding: .2rem .6rem; border-radius: 6px;
+    }
+
+    /* ── Formatting tags showcase ── */
+    .fmt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
+      gap: 1rem;
+    }
+
+    .fmt-card {
+      background-color: var(--color-bg2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+    }
+    .fmt-card .tag-label {
+      font-family: 'Fira Code', monospace;
+      font-size: .75rem;
+      color: var(--color-primary);
+      display: block; margin-bottom: .4rem;
+    }
+    .fmt-card .preview { font-size: .95rem; }
+
+    /* ── Color Properties showcase ── */
+    .color-section { }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      gap: 1rem;
+    }
+    .color-card {
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      font-size: .82rem;
+    }
+    .color-card .cc-title { font-weight: 700; font-size: .9rem; margin-bottom: .3rem; }
+    .color-card .cc-code  {
+      font-family: 'Fira Code', monospace;
+      font-size: .72rem; opacity: .8;
+    }
+
+    /* ── Article inside main ── */
+    article {
+      border-left: 4px solid var(--color-primary);
+      padding: 1.2rem 1.5rem;
+      background: var(--grad-warm);                  /* gradient */
+      border-radius: 0 12px 12px 0;
+    }
+
+    article h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--color-text);
+      margin-bottom: .6rem;
+    }
+
+    article p { font-size: .92rem; color: var(--color-muted); }
+
+    /* ── Details / Summary (semantic) ── */
+    details {
+      background: var(--grad-cool);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-top: .8rem;
+    }
+    details + details { margin-top: .5rem; }
+    summary {
+      font-weight: 700; cursor: pointer;
+      color: var(--color-secondary);
+      font-size: .95rem;
+      list-style: none;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    summary::before { content: '▸'; transition: transform .2s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details p { margin-top: .6rem; font-size: .88rem; color: var(--color-muted); }
+
+    /* ── Figure / Figcaption (semantic) ── */
+    figure {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .fig-visual {
+      display: inline-flex;
+      gap: .5rem;
+      padding: 1.5rem 2rem;
+      background: var(--color-bg);
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      font-size: 2.5rem;
+    }
+    figcaption {
+      margin-top: .5rem;
+      font-size: .8rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
+    /* ── Blockquote ── */
+    blockquote {
+      border-left: 4px solid var(--color-accent);
+      background-color: var(--color-accent-l);
+      padding: 1rem 1.4rem;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: hsl(340, 40%, 30%);
+      margin-top: 1rem;
+    }
+    blockquote cite {
+      display: block;
+      margin-top: .4rem;
+      font-size: .8rem;
+      font-style: normal;
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; margin-top: .5rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+    thead {
+      background-color: var(--color-sidebar);
+      color: var(--color-light-text);
+    }
+    thead th {
+      padding: .7rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    tbody tr { border-bottom: 1px solid var(--color-border); }
+    tbody tr:nth-child(even) { background-color: var(--color-bg); }
+    tbody td { padding: .65rem 1rem; }
+
+    /* ── Form inside section ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: .5rem;
+    }
+    .form-field { display: flex; flex-direction: column; gap: .3rem; }
+    .form-field label {
+      font-size: .8rem; font-weight: 600;
+      color: var(--color-muted);
+      letter-spacing: .04em;
+    }
+    .form-field input, .form-field textarea {
+      padding: .55rem .8rem;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .9rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-field input:focus, .form-field textarea:focus {
+      border-color: var(--color-primary);
+    }
+    .form-field.full { grid-column: 1 / -1; }
+    .btn {
+      display: inline-block;
+      margin-top: .8rem;
+      padding: .6rem 1.8rem;
+      background-color: var(--color-primary);
+      color: #ffffff;
+      border: none; border-radius: 99px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: .9rem;
+      cursor: pointer;
+      transition: background-color .2s, transform .15s;
+    }
+    .btn:hover {
+      background-color: hsl(28, 85%, 38%);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════
+       FOOTER  (semantic tag)
+    ═══════════════════════════════════ */
+    footer {
+      grid-column: 1 / -1;
+      background-color: var(--color-sidebar);
+      color: rgba(245, 237, 224, 0.70);
+      text-align: center;
+      padding: 1.6rem 2rem;
+      font-size: .83rem;
+      border-top: 3px solid var(--color-primary);
+    }
+    footer strong { color: hsl(28, 100%, 75%); }
+
+    /* ═══════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════ */
+    @media (max-width: 700px) {
+      .page { grid-template-columns: 1fr; }
+      aside { border-right: none; border-bottom: 1px solid var(--color-border); }
+      main  { padding: 1.5rem 1.2rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+
+  </style>
+
+  <!-- ============================================================
+       TYPE 3 — EXTERNAL CSS (link to a separate file)
+       Simulated here as a <style> block labeled "external"
+       In real projects: <link rel="stylesheet" href="style.css" />
+       ============================================================ -->
+  <!--
+    <link rel="stylesheet" href="style.css" />
+  -->
+  <!-- The block below represents what external CSS looks like: -->
+  <style id="external-css-simulation">
+    /* ── EXTERNAL CSS FILE: style.css ──
+       This block represents styles that would live in an external file.
+       In real production: <link rel="stylesheet" href="style.css" />
+    ── */
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+    /* Selection color */
+    ::selection {
+      background-color: hsl(28, 100%, 80%);
+      color: hsl(28, 80%, 20%);
+    }
+
+    /* External: utility highlight classes */
+    .highlight-primary  { background-color: var(--color-primary-l);  color: hsl(28,80%,30%);  padding: .1rem .4rem; border-radius: 4px; }
+    .highlight-teal     { background-color: var(--color-secondary-l); color: hsl(195,70%,25%); padding: .1rem .4rem; border-radius: 4px; }
+    .highlight-rose     { background-color: var(--color-accent-l);    color: hsl(340,70%,35%); padding: .1rem .4rem; border-radius: 4px; }
+    .highlight-green    { background-color: var(--color-green-l);     color: hsl(145,60%,25%); padding: .1rem .4rem; border-radius: 4px; }
+    .highlight-purple   { background-color: var(--color-purple-l);    color: hsl(265,65%,35%); padding: .1rem .4rem; border-radius: 4px; }
+
+    /* External: code block */
+    .code-block {
+      background-color: #2d2013;
+      color: hsl(28, 100%, 80%);
+      font-family: 'Fira Code', monospace;
+      font-size: .82rem;
+      padding: 1rem 1.3rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      line-height: 1.7;
+      margin-top: .8rem;
+    }
+    .code-block .kw  { color: hsl(195, 90%, 65%); }
+    .code-block .val { color: hsl(340, 90%, 75%); }
+    .code-block .cmt { color: rgba(245,237,224,.40); font-style: italic; }
+    .code-block .sel { color: hsl(145, 70%, 65%); }
+
+    /* External: progress bar */
+    .progress-wrap { margin-top: .5rem; }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-size: .8rem; color: var(--color-muted);
+      margin-bottom: .3rem;
+    }
+    .progress-track {
+      height: 8px; background-color: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 99px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 99px;
+      transition: width 1.2s ease;
+    }
+  </style>
+
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════════
+       SEMANTIC TAG: <header>
+  ══════════════════════════════════════════ -->
+  <header>
+    <div class="brand">✦ <span>HTML &amp; CSS</span> Showcase</div>
+    <!-- SEMANTIC TAG: <nav> -->
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#semantic">Semantic</a></li>
+        <li><a href="#formatting">Formatting</a></li>
+        <li><a href="#colors">Colors</a></li>
+        <li><a href="#css-types">CSS Types</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       SEMANTIC TAG: <aside>
+  ══════════════════════════════════════════ -->
+  <aside>
+
+    <div class="sidebar-section">
+      <h3>📌 Quick Index</h3>
+      <ul>
+        <li>Title &amp; Meta Tags</li>
+        <li>Semantic HTML Tags</li>
+        <li>Formatting Tags</li>
+        <li>CSS Color Properties</li>
+        <li>Inline CSS</li>
+        <li>Internal CSS</li>
+        <li>External CSS</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>🎨 Color Types Used</h3>
+      <div class="color-demo">
+        <div class="swatch">
+          <div class="swatch-box" style="background-color:#d97706;"></div>
+          Hex: <code>#d97706</code>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background-color:rgb(13,148,136);"></div>
+          RGB: <code>rgb(13,148,136)</code>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background-color:rgba(225,29,72,.2);border-color:rgba(225,29,72,.5)"></div>
+          RGBA: <code>rgba(...)</code>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background-color:hsl(265,65%,52%);"></div>
+          HSL: <code>hsl(265,65%,52%)</code>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background-color:hsla(145,60%,36%,.25);border-color:hsl(145,60%,36%)"></div>
+          HSLA: <code>hsla(...)</code>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background-color:coral;"></div>
+          Named: <code>coral</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>📄 3 CSS Types</h3>
+      <div class="type-list">
+        <div class="type-item">
+          <strong><span class="css-badge css-inline">Inline</span></strong>
+          Written directly inside HTML tag using <code>style="..."</code>
+        </div>
+        <div class="type-item">
+          <strong><span class="css-badge css-internal">Internal</span></strong>
+          Written inside <code>&lt;style&gt;</code> tag in <code>&lt;head&gt;</code>
+        </div>
+        <div class="type-item">
+          <strong><span class="css-badge css-external">External</span></strong>
+          Linked via <code>&lt;link rel="stylesheet"&gt;</code> to a .css file
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════════
+       SEMANTIC TAG: <main>
+  ══════════════════════════════════════════ -->
+  <main>
+
+    <!-- ─── SECTION 1: Semantic Tags ─── -->
+    <!-- SEMANTIC TAG: <section> -->
+    <section id="semantic">
+      <h2>🏷 Semantic HTML Tags <span class="tag-chip">&lt;semantic&gt;</span></h2>
+      <p style="color:var(--color-muted); font-size:.9rem; margin-bottom:1rem;">
+        <!-- TYPE 1: INLINE CSS above ↑ (style="...") -->
+        Semantic tags give meaning to content. They help browsers, search engines, and screen readers understand page structure.
+      </p>
+
+      <!-- SEMANTIC TAG: <article> -->
+      <article>
+        <h3>📰 Article: Why Semantics Matter</h3>
+        <p>
+          Using tags like <span class="highlight-primary">&lt;header&gt;</span>,
+          <span class="highlight-teal">&lt;nav&gt;</span>,
+          <span class="highlight-rose">&lt;main&gt;</span>,
+          <span class="highlight-green">&lt;aside&gt;</span>, and
+          <span class="highlight-purple">&lt;footer&gt;</span>
+          tells browsers exactly what each section <em>means</em> — not just how it looks.
+        </p>
+      </article>
+
+      <!-- SEMANTIC TAG: <details> & <summary> -->
+      <details>
+        <summary>What is &lt;header&gt;?</summary>
+        <p>The <code>&lt;header&gt;</code> tag defines introductory content — usually a logo, page title, and navigation. It can appear inside <code>&lt;body&gt;</code>, <code>&lt;section&gt;</code>, or <code>&lt;article&gt;</code>.</p>
+      </details>
+      <details>
+        <summary>What is &lt;aside&gt;?</summary>
+        <p>The <code>&lt;aside&gt;</code> tag holds content that is indirectly related to the main content — like sidebars, pull quotes, or advertisements.</p>
+      </details>
+      <details>
+        <summary>What is &lt;figure&gt; &amp; &lt;figcaption&gt;?</summary>
+        <p>Used together to mark up self-contained media (images, diagrams, code) and their caption.</p>
+      </details>
+
+      <!-- SEMANTIC TAG: <figure> & <figcaption> -->
+      <figure>
+        <div class="fig-visual">🌐 🏷️ 📋 🔗 🖼️</div>
+        <figcaption>Semantic HTML elements give your page meaningful structure</figcaption>
+      </figure>
+
+    </section>
+
+    <!-- ─── SECTION 2: Formatting Tags ─── -->
+    <section id="formatting">
+      <h2>✏️ Formatting Tags <span class="tag-chip">&lt;format&gt;</span></h2>
+
+      <div class="fmt-grid">
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;b&gt; &amp; &lt;strong&gt;</span>
+          <div class="preview">
+            <b>Bold text</b> vs <strong>Important text</strong><br>
+            <small style="color:var(--color-muted)">b = visual; strong = semantic</small>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;i&gt; &amp; &lt;em&gt;</span>
+          <div class="preview">
+            <i>Italic style</i> vs <em>Emphasized meaning</em>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;u&gt; &amp; &lt;s&gt;</span>
+          <div class="preview">
+            <u>Underlined text</u> &nbsp; <s>Strikethrough text</s>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;mark&gt;</span>
+          <div class="preview">
+            This is <mark>highlighted</mark> content using the mark tag.
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;sup&gt; &amp; &lt;sub&gt;</span>
+          <div class="preview">
+            H<sub>2</sub>O &nbsp;&nbsp; x<sup>2</sup> + y<sup>2</sup>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;small&gt;</span>
+          <div class="preview">
+            Normal text. <small>This is small text — great for footnotes.</small>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;code&gt; &amp; &lt;pre&gt;</span>
+          <div class="preview">
+            Use <code>color: red;</code> to change color.<br>
+            <pre style="font-size:.75rem;color:var(--color-primary);margin-top:.3rem">p { margin: 0; }</pre>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;abbr&gt; &amp; &lt;q&gt;</span>
+          <div class="preview">
+            <abbr title="Cascading Style Sheets">CSS</abbr> is awesome. <br>
+            <q>Style is everything.</q>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;del&gt; &amp; &lt;ins&gt;</span>
+          <div class="preview">
+            Price: <del>₹999</del> <ins>₹499</ins> only!
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;kbd&gt;</span>
+          <div class="preview">
+            Press <kbd style="background:#eee;border:1px solid #ccc;border-radius:4px;padding:.1rem .4rem;font-size:.85rem">Ctrl</kbd> +
+            <kbd style="background:#eee;border:1px solid #ccc;border-radius:4px;padding:.1rem .4rem;font-size:.85rem">S</kbd> to save.
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;blockquote&gt;</span>
+          <div class="preview" style="font-size:.85rem">
+            <blockquote style="border-left:3px solid var(--color-primary);padding-left:.7rem;font-style:italic;color:var(--color-muted)">
+              Learning never exhausts the mind.
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;hr&gt; &amp; &lt;br&gt;</span>
+          <div class="preview">
+            Line one.<br>New line after &lt;br&gt;.
+            <hr style="border:none;border-top:1px solid var(--color-border);margin:.5rem 0;">
+            Section break via &lt;hr&gt;.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Blockquote (semantic + formatting) -->
+      <blockquote>
+        "The strength of the web is its universality. Access by everyone regardless of disability is an essential aspect."
+        <cite>— Tim Berners-Lee</cite>
+      </blockquote>
+
+    </section>
+
+    <!-- ─── SECTION 3: CSS Color Properties ─── -->
+    <section id="colors">
+      <h2>🎨 CSS Color Properties <span class="tag-chip">color</span></h2>
+      <p style="color:var(--color-muted);font-size:.88rem;margin-bottom:1.2rem">
+        CSS supports multiple color formats. Each card below demonstrates a different format with its property.
+      </p>
+
+      <div class="color-grid">
+
+        <!-- Named Color -->
+        <div class="color-card" style="background-color:coral; color:#fff;">
+          <div class="cc-title">Named Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background-color: coral</p>
+          <code class="cc-code">color: white</code>
+        </div>
+
+        <!-- HEX Color -->
+        <div class="color-card" style="background-color:#2d2013; color:#fde68a;">
+          <div class="cc-title">HEX Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background-color: #2d2013</p>
+          <code class="cc-code">color: #fde68a</code>
+        </div>
+
+        <!-- RGB Color -->
+        <div class="color-card" style="background-color:rgb(13,148,136); color:rgb(255,255,255);">
+          <div class="cc-title">RGB Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background-color: rgb(13,148,136)</p>
+          <code class="cc-code">color: rgb(255,255,255)</code>
+        </div>
+
+        <!-- RGBA Color -->
+        <div class="color-card" style="background-color:rgba(225,29,72,0.12); color:hsl(340,80%,35%); border:1px solid rgba(225,29,72,0.3);">
+          <div class="cc-title">RGBA Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background-color: rgba(225,29,72,.12)</p>
+          <code class="cc-code">border: rgba(225,29,72,.3)</code>
+        </div>
+
+        <!-- HSL Color -->
+        <div class="color-card" style="background-color:hsl(265,65%,52%); color:hsl(265,100%,95%);">
+          <div class="cc-title">HSL Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background-color: hsl(265,65%,52%)</p>
+          <code class="cc-code">color: hsl(265,100%,95%)</code>
+        </div>
+
+        <!-- HSLA Color -->
+        <div class="color-card" style="background-color:hsla(145,60%,36%,0.15); color:hsl(145,60%,22%); border:1px solid hsla(145,60%,36%,.35);">
+          <div class="cc-title">HSLA Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background-color: hsla(145,60%,36%,.15)</p>
+          <code class="cc-code">border: hsla(145,60%,36%,.35)</code>
+        </div>
+
+        <!-- Gradient -->
+        <div class="color-card" style="background:linear-gradient(135deg,hsl(28,100%,60%),hsl(340,80%,55%)); color:#fff;">
+          <div class="cc-title">Linear Gradient</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">background: linear-gradient(...)</p>
+          <code class="cc-code" style="opacity:.85">hsl to hsl</code>
+        </div>
+
+        <!-- Border Color -->
+        <div class="color-card" style="background:var(--color-bg2); border:3px solid hsl(195,70%,38%); color:hsl(195,70%,25%);">
+          <div class="cc-title">Border Color</div>
+          <p style="font-size:.82rem;opacity:.9;margin:.3rem 0">border: 3px solid hsl(195,70%,38%)</p>
+          <code class="cc-code">outline-color, border-color</code>
+        </div>
+
+      </div>
+
+      <!-- Skill/progress bars showing color in action -->
+      <div style="margin-top:1.5rem;">
+        <p style="font-weight:700;margin-bottom:.8rem;font-size:.9rem;">CSS Color Progress Bars (External CSS classes)</p>
+
+        <div class="progress-wrap">
+          <div class="progress-label"><span>HEX Colors</span><span>95%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:95%;background-color:#d97706;"></div></div>
+        </div>
+        <div class="progress-wrap" style="margin-top:.5rem">
+          <div class="progress-label"><span>RGB / RGBA</span><span>88%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:88%;background-color:rgb(13,148,136);"></div></div>
+        </div>
+        <div class="progress-wrap" style="margin-top:.5rem">
+          <div class="progress-label"><span>HSL / HSLA</span><span>80%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:80%;background-color:hsl(265,65%,52%);"></div></div>
+        </div>
+        <div class="progress-wrap" style="margin-top:.5rem">
+          <div class="progress-label"><span>Named Colors</span><span>70%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:70%;background-color:coral;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 4: 3 CSS Types demo ─── -->
+    <section id="css-types">
+      <h2>📄 3 Types of CSS <span class="tag-chip">CSS</span></h2>
+
+      <!-- TYPE TABLE -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Where Written</th>
+              <th>Syntax Example</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="css-badge css-inline">Inline</span></td>
+              <td>Inside HTML tag</td>
+              <td><code>style="color:red;"</code></td>
+              <td>Quick single overrides</td>
+            </tr>
+            <tr>
+              <td><span class="css-badge css-internal">Internal</span></td>
+              <td>In <code>&lt;head&gt;</code> → <code>&lt;style&gt;</code></td>
+              <td><code>p { color: blue; }</code></td>
+              <td>Single-page styling</td>
+            </tr>
+            <tr>
+              <td><span class="css-badge css-external">External</span></td>
+              <td>Separate .css file</td>
+              <td><code>&lt;link rel="stylesheet"&gt;</code></td>
+              <td>Multi-page projects</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Live code demos -->
+      <!-- TYPE 1: INLINE CSS demo -->
+      <p style="font-weight:700; margin-top:1.5rem; margin-bottom:.5rem;">
+        <span class="css-badge css-inline">Inline CSS</span> — applied directly on tags below:
+      </p>
+      <p>
+        <!-- INLINE CSS examples on formatting tags -->
+        <span style="color:red; font-weight:bold;">This text is red & bold</span> |
+        <span style="background-color:hsl(28,100%,88%); padding:.1rem .5rem; border-radius:4px;">Amber background</span> |
+        <span style="color:rgb(13,148,136); text-decoration:underline;">Teal underline</span> |
+        <span style="font-size:1.2rem; color:hsl(265,65%,52%);">Big purple text</span>
+      </p>
+
+      <!-- TYPE 2: INTERNAL CSS demo -->
+      <p style="font-weight:700; margin-top:1.2rem; margin-bottom:.5rem;">
+        <span class="css-badge css-internal">Internal CSS</span> — styles defined in &lt;head&gt; &lt;style&gt;:
+      </p>
+      <div class="code-block">
+<span class="cmt">/* Internal CSS — inside &lt;style&gt; in &lt;head&gt; */</span>
+<span class="sel">body</span> {
+  <span class="kw">background-color</span>: <span class="val">#fdf6ee</span>;   <span class="cmt">/* hex */</span>
+  <span class="kw">color</span>: <span class="val">hsl(28, 60%, 15%)</span>;      <span class="cmt">/* hsl */</span>
+}
+<span class="sel">header</span> {
+  <span class="kw">background-color</span>: <span class="val">rgba(45,32,19,1)</span>; <span class="cmt">/* rgba */</span>
+  <span class="kw">border-bottom</span>: <span class="val">3px solid coral</span>;    <span class="cmt">/* named */</span>
+}
+      </div>
+
+      <!-- TYPE 3: EXTERNAL CSS demo -->
+      <p style="font-weight:700; margin-top:1.2rem; margin-bottom:.5rem;">
+        <span class="css-badge css-external">External CSS</span> — linked via &lt;link&gt; tag:
+      </p>
+      <div class="code-block">
+<span class="cmt">&lt;!-- In HTML &lt;head&gt; --&gt;</span>
+<span class="kw">&lt;link</span> <span class="sel">rel</span>=<span class="val">"stylesheet"</span> <span class="sel">href</span>=<span class="val">"style.css"</span><span class="kw"> /&gt;</span>
+
+<span class="cmt">/* In style.css file */</span>
+<span class="sel">.highlight-primary</span> {
+  <span class="kw">background-color</span>: <span class="val">hsl(28, 100%, 95%)</span>;
+  <span class="kw">color</span>:             <span class="val">hsl(28, 80%, 30%)</span>;
+  <span class="kw">border-radius</span>:     <span class="val">4px</span>;
+}
+      </div>
+
+    </section>
+
+    <!-- ─── SECTION 5: Contact Form ─── -->
+    <!-- SEMANTIC TAG: <section> with <form> -->
+    <section id="contact">
+      <h2>📬 Contact Form <span class="tag-chip">&lt;form&gt;</span></h2>
+
+      <form action="#" method="post" onsubmit="return false;">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Trupti" />
+          </div>
+          <div class="form-field">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Kavtalwar" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" />
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98817 26339" />
+          </div>
+          <div class="form-field full">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="msg" rows="3" placeholder="Write your message here..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn">Send Message ✉️</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       SEMANTIC TAG: <footer>
+  ══════════════════════════════════════════ -->
+  <footer>
+    <p>
+      Designed &amp; coded by <strong>Trupti Kavtalwar</strong> &nbsp;·&nbsp;
+      Demonstrates <strong>Title Tag</strong>, <strong>Meta Tags</strong>,
+      <strong>Semantic Tags</strong>, <strong>Formatting Tags</strong>,
+      <strong>CSS Color Properties</strong> &amp; All <strong>3 CSS Types</strong>
+    </p>
+    <p style="margin-top:.4rem; font-size:.75rem; opacity:.6;">
+      &copy; 2026 &nbsp;|&nbsp; HTML5 &amp; CSS3 Showcase &nbsp;|&nbsp; Academic Assignment #20
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
