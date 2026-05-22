@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Profile – Aanya Sharma</title>
+
+  <!-- ===== INTERNAL CSS ===== -->
+  <style>
+    /* ── Google Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+    /* ── CSS Variables – Light Theme ── */
+    :root {
+      --bg:        #f0f4ff;
+      --surface:   #ffffff;
+      --card:      #ffffff;
+      --border:    #dde3f5;
+      --accent1:   #f43f5e;
+      --accent2:   #d97706;
+      --accent3:   #10b981;
+      --accent4:   #3b82f6;
+      --accent5:   #8b5cf6;
+      --text:      #1e1b4b;
+      --muted:     #6b7280;
+      --heading:   'Syne', sans-serif;
+      --body:      'DM Sans', sans-serif;
+      --serif:     'DM Serif Display', serif;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 10% 10%, rgba(139,92,246,.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(59,130,246,.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 30%, rgba(16,185,129,.07) 0%, transparent 40%);
+      color: var(--text);
+      font-family: var(--body);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Soft dot pattern overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(99,102,241,.10) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Layout wrapper ── */
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ══════════════════════════
+       HEADER / HERO
+    ══════════════════════════ */
+    header {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 2.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.6s ease both;
+      box-shadow: 0 8px 40px rgba(99,102,241,.10);
+    }
+
+    /* rainbow top stripe */
+    header::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg,
+        var(--accent1), var(--accent2), var(--accent3),
+        var(--accent4), var(--accent5));
+    }
+
+    .avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent4), var(--accent5));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.8rem;
+      box-shadow: 0 0 0 4px var(--border), 0 8px 30px rgba(59,130,246,.25);
+      flex-shrink: 0;
+    }
+
+    .hero-text h1 {
+      font-family: var(--heading);
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-text h1 mark {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p.tagline {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .badge-row {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-blue   { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .badge-green  { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-pink   { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+    .badge-yellow { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .badge-purple { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+
+    /* ══════════════════════════
+       MAIN CONTENT
+    ══════════════════════════ */
+    main { display: flex; flex-direction: column; gap: 2rem; }
+
+    /* ── Section card ── */
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 2rem 1.8rem;
+      animation: fadeUp 0.6s ease both;
+      box-shadow: 0 4px 24px rgba(99,102,241,.07);
+    }
+
+    section:nth-child(2) { animation-delay: .1s; }
+    section:nth-child(3) { animation-delay: .2s; }
+    section:nth-child(4) { animation-delay: .3s; }
+    section:nth-child(5) { animation-delay: .4s; }
+    section:nth-child(6) { animation-delay: .5s; }
+
+    /* ── Section heading ── */
+    section h2 {
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    section h2 span.dot {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── About ── */
+    #about p { color: #374151; }
+    #about strong { color: var(--text); font-weight: 600; }
+    #about em { color: var(--accent5); font-style: italic; }
+
+    /* ── Academic Details ── */
+    #academics .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .info-card {
+      background: #f8faff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+    }
+
+    .info-card dt {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-card dd {
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* ── Subjects ── */
+    #subjects ul { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+
+    #subjects li {
+      display: grid;
+      grid-template-columns: 160px 1fr 48px;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    #subjects li span.subj-name { font-weight: 500; }
+
+    .bar-track {
+      height: 8px; background: #e0e7ff; border-radius: 999px; overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%; border-radius: 999px;
+      transition: width 1s ease;
+    }
+
+    #subjects li span.grade {
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    /* ── Achievements ── */
+    #achievements ol { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+
+    #achievements li {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: #f8faff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    #achievements li .num {
+      font-family: var(--heading);
+      font-weight: 800;
+      font-size: 1.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+      color: var(--accent2);
+    }
+
+    #achievements li p { color: #6b7280; }
+    #achievements li b { color: var(--text); font-weight: 600; }
+
+    /* ── Hobbies ── */
+    #hobbies .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1rem;
+    }
+
+    .hobby-card {
+      background: #f8faff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(99,102,241,.15);
+    }
+
+    .hobby-card .icon { font-size: 2rem; display: block; margin-bottom: 0.4rem; }
+    .hobby-card .label { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── Contact ── */
+    #contact address { font-style: normal; }
+
+    #contact .contact-list {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+    }
+
+    .contact-chip {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #f8faff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .contact-chip:hover { background: #eff6ff; border-color: var(--accent4); color: var(--accent4); }
+
+    /* ══════════════════════════
+       FOOTER
+    ══════════════════════════ */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      animation: fadeUp 0.6s ease 0.6s both;
+    }
+
+    footer hr {
+      border: none; border-top: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    footer small { display: block; margin-top: 0.3rem; color: #9ca3af; }
+
+    /* ══════════════════════════
+       ANIMATIONS
+    ══════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════
+       RESPONSIVE
+    ══════════════════════════ */
+    @media (max-width: 540px) {
+      header { grid-template-columns: 1fr; text-align: center; }
+      .avatar { margin: 0 auto; }
+      .badge-row { justify-content: center; }
+      #subjects li { grid-template-columns: 1fr; gap: 0.3rem; }
+      #subjects li span.grade { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <div class="avatar" role="img" aria-label="Student avatar">🎓</div>
+    <div class="hero-text">
+      <h1><mark>Aanya Sharma</mark></h1>
+      <p class="tagline">"Learning is not a destination — it's the journey itself."</p>
+      <div class="badge-row">
+        <span class="badge badge-blue">M.Sc. Graduate</span>
+        <span class="badge badge-green">B.Ed. Graduate</span>
+        <span class="badge badge-yellow">PGDCA – IGNOU (Pursuing)</span>
+        <span class="badge badge-purple">FSD Certification (Pursuing)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- About -->
+    <section id="about">
+      <h2><span class="dot" style="background:var(--accent4)"></span>About Me</h2>
+      <p>
+        Hi! I'm <strong>Aanya Sharma</strong>, a <em>passionate and driven</em> learner who has completed
+        <strong>M.Sc.</strong> and <strong>B.Ed.</strong> and is currently pursuing a
+        <em>Post Graduate Diploma in Computer Applications (PGDCA)</em> from
+        <strong>IGNOU University</strong>.
+      </p>
+      <br>
+      <p>
+        Alongside my diploma, I am also doing a <strong>Full Stack Development (FSD) Certification</strong>
+        to sharpen my <em>web development skills</em>. I believe in <u>lifelong learning</u> and
+        combining the best of <strong>education and technology</strong> to make a real difference.
+      </p>
+    </section>
+
+    <!-- Academic Details -->
+    <section id="academics">
+      <h2><span class="dot" style="background:var(--accent2)"></span>Academic Details</h2>
+      <dl class="info-grid">
+        <div class="info-card">
+          <dt>Graduation</dt>
+          <dd style="color:var(--accent4)">M.Sc.</dd>
+        </div>
+        <div class="info-card">
+          <dt>Education</dt>
+          <dd style="color:var(--accent3)">B.Ed.</dd>
+        </div>
+        <div class="info-card">
+          <dt>PG Diploma</dt>
+          <dd style="color:var(--accent2)">PGDCA <span style="font-size:0.7rem;color:var(--accent1)">(Pursuing)</span></dd>
+        </div>
+        <div class="info-card">
+          <dt>University</dt>
+          <dd>IGNOU</dd>
+        </div>
+        <div class="info-card">
+          <dt>Certification</dt>
+          <dd style="color:var(--accent5)">FSD <span style="font-size:0.7rem;color:var(--accent1)">(Pursuing)</span></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Subjects & Grades -->
+    <section id="subjects">
+      <h2><span class="dot" style="background:var(--accent3)"></span>Subjects &amp; Performance</h2>
+      <ul>
+        <li>
+          <span class="subj-name">Mathematics</span>
+          <div class="bar-track"><div class="bar-fill" style="width:96%;background:linear-gradient(90deg,var(--accent4),var(--accent5))"></div></div>
+          <span class="grade" style="color:var(--accent4)">96</span>
+        </li>
+        <li>
+          <span class="subj-name">Physics</span>
+          <div class="bar-track"><div class="bar-fill" style="width:91%;background:linear-gradient(90deg,var(--accent5),var(--accent1))"></div></div>
+          <span class="grade" style="color:var(--accent5)">91</span>
+        </li>
+        <li>
+          <span class="subj-name">Chemistry</span>
+          <div class="bar-track"><div class="bar-fill" style="width:88%;background:linear-gradient(90deg,var(--accent1),var(--accent2))"></div></div>
+          <span class="grade" style="color:var(--accent1)">88</span>
+        </li>
+        <li>
+          <span class="subj-name">Computer Science</span>
+          <div class="bar-track"><div class="bar-fill" style="width:98%;background:linear-gradient(90deg,var(--accent2),var(--accent3))"></div></div>
+          <span class="grade" style="color:var(--accent2)">98</span>
+        </li>
+        <li>
+          <span class="subj-name">English</span>
+          <div class="bar-track"><div class="bar-fill" style="width:93%;background:linear-gradient(90deg,var(--accent3),var(--accent4))"></div></div>
+          <span class="grade" style="color:var(--accent3)">93</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+      <h2><span class="dot" style="background:var(--accent1)"></span>Achievements</h2>
+      <ol>
+        <li>
+          <span class="num">01</span>
+          <div>
+            <b>National Science Olympiad – Gold Medal</b>
+            <p>Ranked <strong>3rd nationally</strong> in the NSO 2024 held by the Science Olympiad Foundation.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div>
+            <b>State-Level Coding Hackathon – 1st Place</b>
+            <p>Built an <em>AI-powered attendance tracker</em> app that won the Maharashtra State Hackathon.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div>
+            <b>School Head Girl – 2025–26</b>
+            <p>Elected unanimously to lead <strong>1,200+ students</strong> as Head Girl of DPS Pune.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">04</span>
+          <div>
+            <b>Inter-School Debate – Best Speaker</b>
+            <p>Awarded <em>Best Speaker</em> at the <u>Zonal Inter-School Debate Competition 2024</u>.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Hobbies -->
+    <section id="hobbies">
+      <h2><span class="dot" style="background:var(--accent5)"></span>Hobbies &amp; Interests</h2>
+      <div class="hobby-grid">
+        <div class="hobby-card">
+          <span class="icon">💻</span>
+          <span class="label">Coding</span>
+        </div>
+        <div class="hobby-card">
+          <span class="icon">✏️</span>
+          <span class="label">Sketching</span>
+        </div>
+        <div class="hobby-card">
+          <span class="icon">📚</span>
+          <span class="label">Reading</span>
+        </div>
+        <div class="hobby-card">
+          <span class="icon">🎸</span>
+          <span class="label">Guitar</span>
+        </div>
+        <div class="hobby-card">
+          <span class="icon">🏸</span>
+          <span class="label">Badminton</span>
+        </div>
+        <div class="hobby-card">
+          <span class="icon">🔭</span>
+          <span class="label">Astronomy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2><span class="dot" style="background:var(--accent3)"></span>Contact</h2>
+      <address>
+        <div class="contact-list">
+          <a class="contact-chip" href="mailto:aanya.sharma@school.edu">
+            📧 aanya.sharma@school.edu
+          </a>
+          <a class="contact-chip" href="tel:+919876543210">
+            📞 +91 98765 43210
+          </a>
+          <span class="contact-chip">
+            📍 Pune, Maharashtra, India
+          </span>
+          <a class="contact-chip" href="https://github.com" target="_blank" rel="noopener">
+            🐱 github.com/aanya-dev
+          </a>
+        </div>
+      </address>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <hr />
+    <p><strong>Aanya Sharma</strong> · Student Profile · Academic Year 2025–26</p>
+    <small>DPS Pune &nbsp;|&nbsp; CBSE Grade 11 &nbsp;|&nbsp; Science Stream</small>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+</body>
+</html>

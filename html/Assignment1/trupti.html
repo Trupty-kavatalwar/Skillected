@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume – Trupti Kavtalwar | Web Developer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --indigo:   #4f46e5;
+      --indigo-l: #eef2ff;
+      --indigo-m: #c7d2fe;
+      --indigo-d: #3730a3;
+      --teal:     #0d9488;
+      --teal-l:   #f0fdfa;
+      --rose:     #e11d48;
+      --rose-l:   #fff1f2;
+      --amber:    #d97706;
+      --amber-l:  #fffbeb;
+      --green:    #059669;
+      --green-l:  #f0fdf4;
+      --slate:    #334155;
+      --muted:    #64748b;
+      --border:   #e2e8f0;
+      --bg:       #f8fafc;
+      --white:    #ffffff;
+      --sidebar:  #1e1b4b;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--slate);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem 5rem;
+      line-height: 1.6;
+    }
+
+    /* ──────────────── RESUME SHELL ──────────────── */
+    .resume {
+      width: 100%;
+      max-width: 960px;
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(79,70,229,.12), 0 2px 16px rgba(0,0,0,.06);
+      display: grid;
+      grid-template-columns: 255px 1fr;
+      animation: rise .65s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity:0; transform:translateY(28px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ──────────────── SIDEBAR ──────────────── */
+    .sidebar {
+      background: var(--sidebar);
+      color: #cbd5e1;
+      padding: 2.5rem 1.6rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Hero */
+    .hero { text-align: center; }
+
+    .avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.6rem;
+      margin: 0 auto 1rem;
+      border: 3px solid rgba(255,255,255,.15);
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: .3rem;
+    }
+
+    .hero .role {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+    }
+
+    /* Section label */
+    .s-label {
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding-bottom: .4rem;
+      margin-bottom: .85rem;
+    }
+
+    /* Contact */
+    .contact { display: flex; flex-direction: column; gap: .5rem; }
+    .c-row {
+      display: flex; align-items: center; gap: .55rem;
+      font-size: .8rem; color: #cbd5e1;
+      text-decoration: none; word-break: break-all;
+    }
+    .c-row:hover { color: #fff; }
+    .c-dot {
+      width: 26px; height: 26px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+
+    /* Education pills */
+    .edu-list { display: flex; flex-direction: column; gap: .55rem; }
+    .edu-pill {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 10px;
+      padding: .55rem .75rem;
+    }
+    .edu-pill .ep-title { font-size: .83rem; font-weight: 600; color: #fff; }
+    .edu-pill .ep-sub   { font-size: .72rem; color: #94a3b8; margin-top: .1rem; }
+    .ep-badges { display: flex; gap: .35rem; margin-top: .3rem; flex-wrap: wrap; }
+    .ep-badge {
+      font-size: .62rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .05em; padding: .12rem .45rem;
+      border-radius: 99px;
+    }
+    .done   { background: rgba(16,185,129,.2); color: #6ee7b7; }
+    .doing  { background: rgba(251,146,60,.2);  color: #fdba74; }
+
+    /* Skills bars */
+    .skill-list { display: flex; flex-direction: column; gap: .65rem; }
+    .sk-name {
+      display: flex; justify-content: space-between;
+      font-size: .78rem; color: #e2e8f0;
+      margin-bottom: .28rem;
+    }
+    .sk-pct { color: #94a3b8; font-size: .72rem; }
+    .sk-bar { height: 4px; background: rgba(255,255,255,.1); border-radius: 99px; overflow: hidden; }
+    .sk-fill { height: 100%; border-radius: 99px; }
+
+    /* Certs */
+    .cert-list { display: flex; flex-direction: column; gap: .4rem; }
+    .cert-item {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .8rem; color: #cbd5e1;
+    }
+    .cert-icon { font-size: .9rem; }
+
+    /* Languages */
+    .lang-list { display: flex; flex-direction: column; gap: .55rem; }
+    .lang-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .8rem; color: #e2e8f0;
+    }
+    .lang-dots { display: flex; gap: 4px; }
+    .ld { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.15); }
+    .ld.on { background: #6366f1; }
+
+    /* ──────────────── MAIN ──────────────── */
+    .main {
+      padding: 2.5rem 2.2rem 3rem;
+      display: flex; flex-direction: column; gap: 1.8rem;
+    }
+
+    /* Top accent bar */
+    .top-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #f43f5e, #f59e0b, #10b981, #6366f1, #8b5cf6);
+      margin: -2.5rem -2.2rem 0;
+      border-radius: 0;
+    }
+
+    /* Objective */
+    .objective {
+      background: var(--indigo-l);
+      border-left: 3px solid var(--indigo);
+      border-radius: 0 10px 10px 0;
+      padding: .85rem 1rem;
+      font-size: .88rem;
+      color: var(--indigo-d);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* Section title */
+    .m-title {
+      font-family: 'Fraunces', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--slate);
+      letter-spacing: .01em;
+      margin-bottom: .9rem;
+      padding-bottom: .45rem;
+      border-bottom: 1.5px solid var(--border);
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .m-title .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+    }
+
+    /* Experience card */
+    .exp-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--indigo), var(--teal));
+    }
+
+    .exp-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: .4rem;
+      margin-bottom: .6rem;
+    }
+    .exp-role { font-size: .92rem; font-weight: 600; color: var(--slate); }
+    .exp-company { font-size: .8rem; color: var(--indigo); font-weight: 500; margin-top: .1rem; }
+    .exp-date {
+      font-size: .75rem; color: var(--white);
+      background: var(--indigo);
+      padding: .2rem .65rem; border-radius: 99px;
+      white-space: nowrap; height: fit-content;
+    }
+
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .exp-list li {
+      display: flex; gap: .5rem;
+      font-size: .83rem; color: var(--muted); line-height: 1.6;
+    }
+    .exp-list li::before {
+      content: '▸';
+      color: var(--indigo);
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+    .exp-list strong { color: var(--slate); font-weight: 500; }
+    .exp-list em { color: var(--indigo); font-style: normal; font-weight: 500; }
+
+    /* Tags */
+    .tag-row { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .75rem; }
+    .tag {
+      font-size: .7rem; font-weight: 500;
+      padding: .18rem .6rem; border-radius: 99px;
+    }
+
+    /* Portfolio */
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+      gap: .65rem;
+    }
+    .port-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .65rem .85rem;
+      font-size: .8rem;
+    }
+    .port-item a {
+      color: var(--indigo);
+      text-decoration: none;
+      font-weight: 500;
+      word-break: break-all;
+    }
+    .port-item a:hover { text-decoration: underline; }
+    .port-label { font-size: .7rem; color: var(--muted); margin-bottom: .2rem; }
+
+    /* Strength chips */
+    .strength-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .str-chip {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .45rem .85rem;
+      font-size: .82rem; font-weight: 500;
+      color: var(--slate);
+    }
+    .str-chip span { font-size: 1rem; }
+
+    /* Personal details */
+    .personal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
+      gap: .6rem;
+    }
+    .pd-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .6rem .85rem;
+    }
+    .pd-label { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: .15rem; }
+    .pd-val   { font-size: .85rem; font-weight: 500; color: var(--slate); }
+
+    /* Declaration */
+    .declaration {
+      background: var(--green-l);
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      font-size: .82rem;
+      color: #166534;
+    }
+    .decl-bottom {
+      display: flex; justify-content: space-between;
+      font-size: .78rem; color: var(--muted);
+      margin-top: .8rem; flex-wrap: wrap; gap: .4rem;
+    }
+    .decl-bottom strong { color: var(--slate); }
+
+    /* Responsive */
+    @media (max-width: 680px) {
+      .resume { grid-template-columns: 1fr; }
+      .sidebar { padding: 2rem 1.4rem; }
+      .port-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<article class="resume">
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar">
+
+    <div class="hero">
+      <div class="avatar">👩‍💻</div>
+      <h1>Trupti Kavtalwar</h1>
+      <p class="role">Web Developer</p>
+    </div>
+
+    <!-- Contact -->
+    <section>
+      <p class="s-label">Contact</p>
+      <address class="contact">
+        <a class="c-row" href="mailto:truptikavtalwar01@gmail.com">
+          <span class="c-dot" style="background:rgba(99,102,241,.25)">📧</span>
+          truptikavtalwar01@gmail.com
+        </a>
+        <a class="c-row" href="tel:+919881726339">
+          <span class="c-dot" style="background:rgba(16,185,129,.2)">📞</span>
+          9881726339 / 8788254443
+        </a>
+        <span class="c-row">
+          <span class="c-dot" style="background:rgba(244,63,94,.2)">📍</span>
+          Nagpur, Maharashtra 442705
+        </span>
+        <a class="c-row" href="https://in.linkedin.com/in/trupti-kavtalwar-11111one" target="_blank">
+          <span class="c-dot" style="background:rgba(14,165,233,.2)">🔗</span>
+          LinkedIn Profile
+        </a>
+      </address>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <p class="s-label">Education</p>
+      <div class="edu-list">
+        <div class="edu-pill">
+          <div class="ep-title">PGDCA</div>
+          <div class="ep-sub">IGNOU University</div>
+          <div class="ep-badges"><span class="ep-badge doing">⏳ Pursuing</span></div>
+        </div>
+        <div class="edu-pill">
+          <div class="ep-title">M.Sc. (Mathematics)</div>
+          <div class="ep-sub">Gondwana University · 2020</div>
+          <div class="ep-badges"><span class="ep-badge done">67%</span></div>
+        </div>
+        <div class="edu-pill">
+          <div class="ep-title">B.Ed.</div>
+          <div class="ep-sub">Gondwana University · 2014</div>
+          <div class="ep-badges"><span class="ep-badge done">56.71%</span></div>
+        </div>
+        <div class="edu-pill">
+          <div class="ep-title">B.Sc.</div>
+          <div class="ep-sub">RTM Nagpur University · 2012</div>
+          <div class="ep-badges"><span class="ep-badge done">50%</span></div>
+        </div>
+        <div class="edu-pill">
+          <div class="ep-title">HSC &amp; SSC</div>
+          <div class="ep-sub">Maharashtra State Board</div>
+          <div class="ep-badges">
+            <span class="ep-badge done">HSC 56%</span>
+            <span class="ep-badge done">SSC 69%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Skills -->
+    <section>
+      <p class="s-label">Technical Skills</p>
+      <div class="skill-list">
+        <div>
+          <div class="sk-name"><span>HTML5 / CSS3</span><span class="sk-pct">95%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:95%;background:linear-gradient(90deg,#6366f1,#8b5cf6)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>Bootstrap 4 &amp; 5</span><span class="sk-pct">90%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:90%;background:linear-gradient(90deg,#0d9488,#3b82f6)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>JavaScript</span><span class="sk-pct">80%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:80%;background:linear-gradient(90deg,#f59e0b,#f43f5e)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>Angular</span><span class="sk-pct">75%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:75%;background:linear-gradient(90deg,#e11d48,#f59e0b)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>PHP</span><span class="sk-pct">70%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:70%;background:linear-gradient(90deg,#8b5cf6,#6366f1)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>SASS / SCSS</span><span class="sk-pct">82%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:82%;background:linear-gradient(90deg,#ec4899,#8b5cf6)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>MySQL</span><span class="sk-pct">68%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:68%;background:linear-gradient(90deg,#0d9488,#059669)"></div></div>
+        </div>
+        <div>
+          <div class="sk-name"><span>Figma → HTML</span><span class="sk-pct">88%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:88%;background:linear-gradient(90deg,#f43f5e,#6366f1)"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section>
+      <p class="s-label">Languages</p>
+      <div class="lang-list">
+        <div class="lang-row"><span>Hindi</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
+        <div class="lang-row"><span>English</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+        <div class="lang-row"><span>Marathi</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+        <div class="lang-row"><span>Telugu</span><div class="lang-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div><div class="ld"></div></div></div>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- ════════ MAIN ════════ -->
+  <main class="main">
+
+    <div class="top-bar"></div>
+
+    <!-- Objective -->
+    <section>
+      <p class="objective">
+        To contribute effectively to an organization by leveraging my <strong>technical skills</strong>
+        and educational background, while continuously learning and adapting to enhance my
+        <strong>professional growth</strong> and support the company's goals.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h2 class="m-title">
+        <span class="dot" style="background:#6366f1"></span>
+        Professional Experience
+      </h2>
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-role">Web Developer</div>
+            <div class="exp-company">Global Education Pvt. Limited, Nagpur</div>
+          </div>
+          <span class="exp-date">July 2022 – Present · 3+ Yrs</span>
+        </div>
+        <ul class="exp-list">
+          <li>Developed and maintained <strong>responsive web applications</strong> using <em>Angular</em> and <em>Bootstrap 5</em> for modern, cross-device compatibility.</li>
+          <li>Integrated <strong>ChatGPT / AI tools</strong> into workflows — automating debugging, generating technical documentation, and optimizing code for delivery speed.</li>
+          <li>Collaborated with <strong>cross-functional teams</strong> to deliver high-quality, pixel-perfect user interfaces from Figma and PSD designs.</li>
+          <li>Managed end-to-end lifecycle of client projects — from <em>ideation and wireframing</em> to <em>deployment and maintenance</em>.</li>
+          <li>Utilized <strong>GitHub &amp; Trello</strong> for version control and agile project management across multiple live client websites.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag" style="background:#eef2ff;color:#4338ca">Angular</span>
+          <span class="tag" style="background:#eff6ff;color:#1d4ed8">Bootstrap 5</span>
+          <span class="tag" style="background:#fef3c7;color:#92400e">JavaScript</span>
+          <span class="tag" style="background:#fdf4ff;color:#7e22ce">SASS/SCSS</span>
+          <span class="tag" style="background:#f0fdf4;color:#166534">PHP</span>
+          <span class="tag" style="background:#f0fdfa;color:#0f766e">MySQL</span>
+          <span class="tag" style="background:#fff1f2;color:#9f1239">ChatGPT</span>
+          <span class="tag" style="background:#f1f5f9;color:#334155">GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section>
+      <h2 class="m-title">
+        <span class="dot" style="background:#f59e0b"></span>
+        Certifications
+      </h2>
+      <div class="cert-list">
+        <div class="cert-item"><span class="cert-icon">🏅</span> MS-CIT (Maharashtra State Certificate in Information Technology)</div>
+        <div class="cert-item"><span class="cert-icon">⌨️</span> English Typing — 30 wpm &amp; 40 wpm certified</div>
+        <div class="cert-item"><span class="cert-icon">⌨️</span> Marathi Typing — 30 wpm certified</div>
+      </div>
+    </section>
+
+    <!-- Portfolio / Websites -->
+    <section>
+      <h2 class="m-title">
+        <span class="dot" style="background:#0d9488"></span>
+        Portfolio &amp; Live Projects
+      </h2>
+      <div class="port-grid">
+        <div class="port-item">
+          <div class="port-label">University Portal</div>
+          <a href="https://raisoni.net/" target="_blank">raisoni.net</a>
+        </div>
+        <div class="port-item">
+          <div class="port-label">Adventure Brand</div>
+          <a href="https://achieversadventure.com/" target="_blank">achieversadventure.com</a>
+        </div>
+        <div class="port-item">
+          <div class="port-label">Construction Co.</div>
+          <a href="https://riaanbuildingsolutions.com/" target="_blank">riaanbuildingsolutions.com</a>
+        </div>
+        <div class="port-item">
+          <div class="port-label">College Site</div>
+          <a href="https://ghraisonikarandak.com/" target="_blank">ghraisonikarandak.com</a>
+        </div>
+        <div class="port-item">
+          <div class="port-label">Admission Portal</div>
+          <a href="https://admissionghrpsngp.raisoni.net/" target="_blank">admissionghrpsngp.raisoni.net</a>
+        </div>
+        <div class="port-item">
+          <div class="port-label">+ More</div>
+          <span style="font-size:.78rem;color:#64748b">Multiple client websites delivered</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strengths -->
+    <section>
+      <h2 class="m-title">
+        <span class="dot" style="background:#e11d48"></span>
+        Core Strengths
+      </h2>
+      <div class="strength-grid">
+        <div class="str-chip"><span>💪</span> Confident &amp; Hardworking</div>
+        <div class="str-chip"><span>💬</span> Good Communication</div>
+        <div class="str-chip"><span>🎯</span> Performance Focused</div>
+        <div class="str-chip"><span>🤖</span> AI-Powered Workflow</div>
+        <div class="str-chip"><span>🎨</span> UI/UX Sensibility</div>
+        <div class="str-chip"><span>⚡</span> Fast Delivery</div>
+      </div>
+    </section>
+
+    <!-- Personal Details -->
+    <section>
+      <h2 class="m-title">
+        <span class="dot" style="background:#8b5cf6"></span>
+        Personal Details
+      </h2>
+      <div class="personal-grid">
+        <div class="pd-card"><div class="pd-label">Date of Birth</div><div class="pd-val">02 June 1992</div></div>
+        <div class="pd-card"><div class="pd-label">Gender</div><div class="pd-val">Female</div></div>
+        <div class="pd-card"><div class="pd-label">Nationality</div><div class="pd-val">Indian</div></div>
+        <div class="pd-card"><div class="pd-label">Religion</div><div class="pd-val">Hindu</div></div>
+        <div class="pd-card"><div class="pd-label">Marital Status</div><div class="pd-val">Single</div></div>
+        <div class="pd-card"><div class="pd-label">Hobbies</div><div class="pd-val">Drawing, Creative Craft</div></div>
+      </div>
+    </section>
+
+    <!-- Declaration -->
+    <section>
+      <h2 class="m-title">
+        <span class="dot" style="background:#10b981"></span>
+        Declaration
+      </h2>
+      <div class="declaration">
+        I hereby declare that all the above written particulars are true and correct
+        to the best of my knowledge and belief.
+        <div class="decl-bottom">
+          <span>📍 Nagpur, Maharashtra</span>
+          <span>📅 May 2026</span>
+          <strong>Trupti Kavtalwar</strong>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</article>
+</body>
+</html>

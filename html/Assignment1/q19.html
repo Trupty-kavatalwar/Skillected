@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Trupty Kavatalwar </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f5f5f7;
+            line-height: 1.7;
+            color: #000;
+        }
+
+        .main-page {
+            padding: 50px 120px;
+        }
+
+        header {
+            padding: 30px 0px 50px;
+            display: flex;
+            background: linear-gradient(90deg, #c77dff, #e8e8f0);
+            border-radius: 25px;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 0 10px #00000033;
+        }
+
+        header .profile-photo {
+            text-align: center;
+            width: 135px;
+            border-radius: 50%;
+            font-size: 65px;
+            line-height: 135px;
+            height: 135px;
+            background: hsl(0deg 0% 100%);
+            box-shadow: 0 0 10px #0000004a;
+        }
+
+        .profile-datails {
+            line-height: 1.8;
+        }
+
+        .profile-datails h1 mark {
+            font-size: 50px;
+            background: linear-gradient(90deg, #000, #c77dff);
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+
+        }
+
+        .profile-datails .tagline {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .badge-white {
+            background: rgb(255 255 255 / 43%);
+            border: 1px solid rgb(255 255 255 / 40%);
+            padding: 7px 15px;
+            border-radius: 25px;
+        }
+
+        .badge-green {
+            background: #69c174ab;
+            border: 1px solid #fdfdfd;
+            padding: 7px 15px;
+            border-radius: 25px;
+        }
+
+        .badge-yellow {
+            background: rgb(227 193 14 / 63%);
+            border: 1px solid rgb(255 255 255 / 61%);
+            padding: 7px 15px;
+            border-radius: 25px;
+
+        }
+
+        .badge-purple {
+            background: rgb(60 202 203 / 75%);
+            border: 1px solid rgb(255 255 255 / 98%);
+            padding: 7px 15px;
+            border-radius: 25px;
+        }
+
+        section {
+            padding: 50px;
+            margin-top: 25px;
+            background: #ffffff;
+            border-radius: 25px;
+        }
+
+        #about em {
+            color: #560694;
+        }
+
+        h2 {
+            font-size: 25px;
+            background: #000;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        #about p {
+            font-size: 17px;
+        }
+
+        .dot {
+            background-color: #c77dff;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            line-height: 15px;
+            display: inline-table;
+            margin-right: 10px;
+        }
+
+        #academics .info-grid {
+            display: flex;
+        }
+
+        #academics .info-card {
+            background: #f5f5f5;
+            border: 1px solid #e1e1e1;
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            width: 30%;
+            margin: 10px;
+            filter: blur(0.1px);
+            box-shadow: 0 0 10px #c77dff38;
+        }
+
+        #academics .info-card dt {
+            font-size: 12px;
+        }
+
+        #certification li {
+            display: flex;
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            align-items: center;
+            box-shadow: 0 0 10px #00000012;
+            background: #f5f5f5;
+            border: 1px solid #e1e1e1;
+        }
+
+        .num {
+            font-size: 25px;
+            font-weight: 500;
+            color: goldenrod;
+            padding-right: 15px;
+        }
+
+        li div {
+            font-size: 16px;
+        }
+        #hobbies .hobby-grid{
+            display: flex;
+        }
+        #hobbies .hobby-card .icon{
+            font-size: 30px;
+        }
+        #hobbies .hobby-card{
+           display: flex;
+            flex-direction: column;
+            background: #f5f5f5;
+            border: 1px solid #e1e1e1;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            margin: 0.5rem;
+            text-align: center;
+            width: 155px;
+            height: 140px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+         #hobbies .hobby-card:hover{
+                transform: translateY(-10px);
+         }
+         #contact .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .contact-chip {
+   display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    background: hsl(274, 83%, 32%);
+    border: 1px solid hsl(274, 83%, 32%);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    text-decoration: none;
+    color: #fff;
+    transition: border-color 0.2s, color 0.2s;
+}
+  .contact-chip:hover {
+      border: 1px solid hsl(61, 85%, 51%);
+        background: hsl(64, 83%, 32%);
+  }
+  footer{
+        margin-top: 3rem;
+    text-align: center;
+    font-size: 0.8rem;
+    animation: fadeUp 0.6s ease 0.6s both;
+  }
+    </style>
+</head>
+
+<body>
+    <div class="main-page">
+        <header>
+            <div class="profile-photo" role="img" aria-label="Student avatar">🎓</div>
+            <div class="profile-datails">
+                <h1><mark>Trupty Kavatalwar</mark></h1>
+                <p class="tagline"><em>"Learning is not a destination — it's the journey itself."</em></p>
+                <div class="badge-row">
+                    <span class="badge-white">M.Sc. Graduate</span>
+                    <span class="badge-green">B.Ed. Graduate</span>
+                    <span class="badge-yellow">PGDCA – IGNOU (Pursuing)</span>
+                    <span class="badge-purple">FSD Certification (Pursuing)</span>
+                </div>
+            </div>
+        </header>
+        <section id="about">
+            <h2><span class="dot"></span>About Me</h2>
+            <p>Hi! I'm <strong>Trupty Kavatalwar</strong>, a <em>passionate and driven</em> learner who has completed
+                <strong>M.Sc.</strong> and <strong>B.Ed.</strong> and is currently pursuing a <em>Post Graduate Diploma
+                    in Computer Applications (PGDCA)</em> from <strong>IGNOU University</strong>.
+            </p><br>
+            <p>Alongside my diploma, I am also doing a <strong>Full Stack Development (FSD) Certification</strong> to
+                sharpen my <em>web development skills</em>. I believe in <u>lifelong learning</u> and combining the best
+                of <strong>education and technology</strong> to make a real difference.</p>
+        </section>
+        <section id="academics">
+            <h2><span class="dot"></span>Academics</h2>
+            <dl class="info-grid">
+                <div class="info-card">
+                    <dt>Graduation</dt>
+                    <dd style="color:#066f13;font-weight: 600;font-size: 18px;">B.Sc.</dd>
+                </div>
+                <div class="info-card">
+                    <dt>Education</dt>
+                    <dd style="color: rgb(217 78 173);font-weight: 600; font-size: 18px;">B.Ed.</dd>
+                </div>
+                <div class="info-card">
+                    <dt>Graduation</dt>
+                    <dd style="color:#061c6f;font-weight: 600;font-size: 18px;">M.Sc.</dd>
+                </div>
+                <div class="info-card">
+                    <dt>PG Diploma</dt>
+                    <dd style="color: hsl(273.8deg 92.21% 30.2%); font-weight: 600;font-size: 18px;" ;>PGDCA <span
+                            style="font-size:0.7rem;">(Pursuing)</span></dd>
+                </div>
+                <div class="info-card">
+                    <dt>Certification</dt>
+                    <dd style="color:rgb(1 152 153);font-weight: 600;font-size: 18px;">FSD <span
+                            style="font-size:0.7rem;">(Pursuing)</span></dd>
+                </div>
+            </dl>
+        </section>
+        <section id="certification">
+            <h2><span class="dot"></span>Certification</h2>
+            <ol style="list-style: none;">
+                <li>
+                    <span class="num">01</span>
+                    <div>
+
+                        <b>MS-CIT (Maharashtra State Certificate in Information Technology)</b>
+
+                    </div>
+                </li>
+                <li>
+                    <span class="num">02</span>
+                    <div>
+                        <b>English Typing — 30 wpm & 40 wpm certified</b>
+
+                    </div>
+                </li>
+                <li>
+                    <span class="num">03</span>
+                    <div>
+                        <b>Marathi Typing — 30 wpm certified</b>
+
+                    </div>
+                </li>
+
+            </ol>
+        </section>
+        <section id="hobbies">
+            <h2><span class="dot"></span>Hobbies & Interests</h2>
+            <div class="hobby-grid">
+                <div class="hobby-card">
+                    <span class="icon">💻</span>
+                    <span class="label">Coding</span>
+                </div>
+                <div class="hobby-card">
+                    <span class="icon">✏️</span>
+                    <span class="label">Sketching</span>
+                </div>
+                <div class="hobby-card">
+                    <span class="icon">📚</span>
+                    <span class="label">Reading</span>
+                </div>
+                <div class="hobby-card">
+                    <span class="icon">🏸</span>
+                    <span class="label">Badminton</span>
+                </div>
+
+            </div>
+        </section>
+         <section id="contact">
+       <h2><span class="dot"></span>Contact</h2>
+      <address>
+        <div class="contact-list">
+          <a class="contact-chip" href="mailto:truptikavatalwar01@gmail.com">
+            📧 truptikavatalwar01@gmail.com
+          </a>
+          <a class="contact-chip" href="tel:+919876543210">
+            📞 +91 9881726339
+          </a>
+          <span class="contact-chip">
+            📍Nagpur, Maharashtra, India
+          </span>
+          <a class="contact-chip" href="https://github.com/Trupty-kavatalwar" target="_blank" rel="noopener">
+            🐱 github.com/Trupty-kavatalwar
+          </a>
+        </div>
+      </address>
+    </section>
+     <footer>
+        <hr />
+        <p><strong>Trupty Kavatalwar</strong> · Student Profile · Academic Year 2025–26</p>
+    </footer>
+    </div>
+</body>
+
+</html>
