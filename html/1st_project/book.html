@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1st Project using HTML CSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-title">
+            <img src="images/flash.png" alt="Logo" width="40px" height="40px">
+            <h1>EV STATIONS</h1>
+        </div>
+        <nav>
+            <a href="index.html">Find</a>
+            <a href="book.html" class="active">Book</a>
+            <a href="stations.html">STATIONS</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+    <section class="book-section">
+        <div class="section-heading">
+            <h6>Riverside Supercharge Hub</h6>
+            <h2>Reserve your port</h2>
+            <p>Hold a port so it's ready when you plug in.</p>
+        </div>
+        <div class="booking-card">
+
+            <h6 class="label">Arrival time</h6>
+            <div class="grid">
+                <div class="btn disabled"><s>2:00PM</s></div>
+                <div class="btn selected-time">2:30PM</div>
+                <div class="btn">3:00PM</div>
+                <div class="btn">3:30PM</div>
+                <div class="btn">4:00PM</div>
+                <div class="btn disabled"><s>4:30PM</s></div>
+                <div class="btn">5:00PM</div>
+                <div class="btn">5:30PM</div>
+            </div>
+
+            <h6 class="label">Hold duration</h6>
+            <div class="grid">
+                <div class="btn">30min</div>
+                <div class="btn">45min</div>
+                <div class="btn selected-duration">60min</div>
+                <div class="btn">90min</div>
+            </div>
+
+            <h6 class="label">Port</h6>
+            <div class="port-row">
+                <div class="port-left">
+                    <img src="images/flash.png" alt="Logo" width="35px" height="35px">
+                    
+                    <div class="port-info">
+                        <h5 class="port-name">Port A1 &middot; CCS</h5>
+                        <p class="port-sub">350kW max</p>
+                    </div>
+                </div>
+                <div class="port-selected">SELECTED</div>
+            </div>
+
+            <div class="cost-box">
+                <div class="cost-row">
+                    <span class="cost-label">Hold fee (waived if you arrive on time)</span>
+                    <span>$2.00</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Estimated energy cost</span>
+                    <span>$18 &ndash; $24</span>
+                </div>
+                <div class="cost-row" style="margin-top: 10px;border-top:1px solid #c97c3d33;">
+                    <span style="margin-top:10px;">Due at reservation</span>
+                    <span style="margin-top:10px;">$2.00</span>
+                </div>
+            </div>
+
+            <a href="#" class="confirm-btn">CONFIRMED RESERVATION</a>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 All Rights Reserved. Design & Developed by Trupti Kavtalwar.</p>
+    </footer>
+</body>
+
+</html>
