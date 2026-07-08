@@ -1,274 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Learning | CSS &amp; HTML Webpage </title>
-   
-  <meta name="description" content="A complete webpage demonstrating HTML semantic tags, formatting tags, CSS color properties, and all three types of CSS styling." />
-  <meta name="keywords" content="HTML, CSS, semantic tags, formatting tags, inline CSS, internal CSS, external CSS, web development" />
+
+  <meta name="description"
+    content="A complete webpage demonstrating HTML semantic tags, formatting tags, CSS color properties, and all three types of CSS styling." />
+  <meta name="keywords"
+    content="HTML, CSS, semantic tags, formatting tags, inline CSS, internal CSS, external CSS, web development" />
   <meta name="author" content="Trupti Kavtalwar" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="My Learning Journal | CSS & HTML Showcase" />
   <meta property="og:description" content="Exploring HTML & CSS concepts beautifully." />
   <meta property="og:type" content="website" />
   <style>
-     @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
-    
-     *,
-      *::before,
-      *::after {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-      }
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
 
-      html {
-          scroll-behavior: smooth;
-      }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      body {
-          font-size: 15px;
-          font-family: 'Nunito', sans-serif;
-          background-color: #fdf6ee;
-          line-height: 1.7;
-          color: #2d2013;
-          font-weight: 400;
-          min-height: 100vh;
-      }
-      a{
-        text-decoration: none;
-      }
-      header{
-        background-color: #2d2013;
-        display: flex;
-        padding: 22px 40px;
-        justify-content: space-between;
-        position: sticky;
-        top: 0;
-        border-bottom: 3px solid #d46c11;
-      }
-        header nav ul {
-           display: flex;
-           list-style: none;
-        }
-         header nav ul li{
-          padding: 10px;
-         }
-         header nav ul li a:hover{
-              color: hsl(28, 100%, 75%);
-        }
-      
-         header nav ul li a{
-          color: rgba(245, 237, 224, 0.80);
-          display: inline-block;
-          transition: 0.6s;
-         }
+    html {
+      scroll-behavior: smooth;
+    }
 
-         .brand{
-            font-size: 24px;
-            font-weight: 400;
-            font-family: 'DM Serif Display', serif;
-            color: hsl(28, 100%, 75%);
-         }
-         .brand span{
-          color: hsl(0, 0%, 100%);;
-         }
-         aside{
-          background-color: #fef3e2;
-          border-right: 1px solid #e8d9c5;
-          padding: 2rem;
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
-          animation: fadeIn .6s ease .1s both;
-          width: 20%;
-         }
-         .sidebar-section li {
-            padding: .3rem 0;
-            font-size: .88rem;
-            color: #7a6652;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-        .sidebar-section h3 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1rem;
-            color: #d46c11;
-            border-bottom: 1px solid #e8d9c5;
-            padding-bottom: .4rem;
-            margin-bottom: .8rem;
-        }
-        .colortype {
-        display: flex;
-        align-items: center;
-        gap: .6rem;
-        font-size: .78rem;
-        color: #7a6652;
-        }
-        .color-demo {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
-        .colortype-box {
-          width: 28px;
-          height: 28px;
-          border-radius: 6px;
-          border: 1px solid #e8d9c5;
-          flex-shrink: 0;
-      }
+    body {
+      font-size: 15px;
+      font-family: 'Nunito', sans-serif;
+      background-color: #fdf6ee;
+      line-height: 1.7;
+      color: #2d2013;
+      font-weight: 400;
+      min-height: 100vh;
+    }
 
-      .type-item {
-    background: #ffffff;
-    border: 1px solid #e8d9c5;
-    border-radius: 8px;
-    padding: .5rem .75rem;
-   display: flex;
+    a {
+      text-decoration: none;
+    }
+
+    header {
+      background-color: #2d2013;
+      display: flex;
+      padding: 22px 40px;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      border-bottom: 3px solid #d46c11;
+    }
+
+    header nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    header nav ul li {
+      padding: 10px;
+    }
+
+    header nav ul li a:hover {
+      color: hsl(28, 100%, 75%);
+    }
+
+    header nav ul li a {
+      color: rgba(245, 237, 224, 0.80);
+      display: inline-block;
+      transition: 0.6s;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 400;
+      font-family: 'DM Serif Display', serif;
+      color: hsl(28, 100%, 75%);
+    }
+
+    .brand span {
+      color: hsl(0, 0%, 100%);
+      ;
+    }
+
+    aside {
+      background-color: #fef3e2;
+      border-right: 1px solid #e8d9c5;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      animation: fadeIn .6s ease .1s both;
+      width: 20%;
+    }
+
+    .sidebar-section li {
+      padding: .3rem 0;
+      font-size: .88rem;
+      color: #7a6652;
+     margin-left: 1rem;
+      /* display: flex;
+      align-items: center; */
+      /* gap: .5rem; */
+    }
+
+    .sidebar-section h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: #d46c11;
+      border-bottom: 1px solid #e8d9c5;
+      padding-bottom: .4rem;
+      margin-bottom: .8rem;
+    }
+
+    .colortype {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .78rem;
+      color: #7a6652;
+    }
+
+    .color-demo {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .colortype-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid #e8d9c5;
+      flex-shrink: 0;
+    }
+
+    .type-item {
+      background: #ffffff;
+      border: 1px solid #e8d9c5;
+      border-radius: 8px;
+      padding: .5rem .75rem;
+      font-size: .8rem;
+      color: #7a6652;
+      margin-bottom: 0.5rem;
+    }
+
+    .type-list {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .css-inline {
+      background-color: hsl(340, 80%, 90%);
+      color: hsl(340, 80%, 35%);
+    }
+
+    .css-internal {
+      background-color: hsl(28, 90%, 88%);
+      color: hsl(28, 80%, 30%);
+    }
+
+    .css-external {
+      background-color: hsl(195, 70%, 88%);
+      color: hsl(195, 70%, 25%);
+    }
+
+    main {
+      padding: 2.5rem 2.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      animation: fadeUp .6s ease .15s both;
+    }
+
+    .page {
+      display: flex;
+    }
+
+    section {
+      background-color: #ffffff;
+      border: 1px solid #e8d9c5;
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 4px 24px #2d20131a;
+    }
+
+    section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    section h2 .tag-chip {
+      font-family: 'Fira Code', monospace;
+      font-size: .62rem;
+      font-weight: 500;
+      background-color: hsl(28, 85%, 92%);
+      color: hsl(28, 80%, 35%);
+      padding: .2rem .6rem;
+      border-radius: 6px;
+    }
+
+    article {
+      background-image: linear-gradient(135deg, rgb(255, 241, 230), rgb(255, 235, 241));
+      padding: 25px;
+      border-left: 3px solid #d46c11;
+      border-radius: 0 20px 20px 0;
+    }
+
+    article h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: .6rem;
+    }
+
+    article p {
+      font-size: .92rem;
+      color: #7a6652;
+    }
+
+    .header-semantic {
+      color: hsl(28, 80%, 30%);
+      padding: .1rem .4rem;
+      border-radius: 4px;
+    }
+
+    .nav-semantic {
+      background-color: #e3f6fc;
+      color: hsl(195, 70%, 25%);
+      padding: .1rem .4rem;
+      border-radius: 4px;
+    }
+
+    .main-semantic {
+      background-color: var(--color-accent-l);
+      color: hsl(340, 70%, 35%);
+      padding: .1rem .4rem;
+      border-radius: 4px;
+    }
+
+    .aside-semantic {
+      background-color: var(--color-green-l);
+      color: hsl(145, 60%, 25%);
+      padding: .1rem .4rem;
+      border-radius: 4px;
+    }
+
+    .footer-semantic {
+      background-color: var(--color-purple-l);
+      color: hsl(265, 65%, 35%);
+      padding: .1rem .4rem;
+      border-radius: 4px;
+    }
+
+    details {
+      /* background: var(--grad-cool); */
+      border: 1px solid #e8d9c5;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-top: .8rem;
+      background-image: linear-gradient(135deg, rgb(227, 246, 252), rgb(243, 237, 253));
+    }
+
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: #1d83a5;
+      font-size: .95rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    figure {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .fig-visual {
+      display: inline-flex;
+      gap: .5rem;
+      padding: 1.5rem 2rem;
+      background: #fdf6ee;
+      border: 1px dashed #e8d9c5;
+      border-radius: 12px;
+      font-size: 2.5rem;
+    }
+
+    figcaption {
+      margin-top: .5rem;
+      font-size: .8rem;
+      font-style: italic;
+    }
+    .fmt-grid{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .fmt-card {
+      background-color: #fff9f2;
+      border: 1px solid #e8d9c5;
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      width:300px;
+      margin-right: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .fmt-card .tag-label{
+      font-family: 'Fira Code', monospace;
+      font-size: .75rem;
+      color: #d46c11;
+      display: block;
+      margin-bottom: .4rem;
+    }
+    blockquote {
+      border-left: 4px solid #e72364;
+    background-color: #ffebf1;
+    padding: 1rem 1.4rem;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    color: hsl(340, 40%, 30%);
+    margin-top: 1rem;
+    }
+    blockquote cite {
+    display: block;
+    margin-top: .4rem;
     font-size: .8rem;
-    color: #7a6652;
-    margin-bottom: 0.5rem;
-    flex-direction: column;
+    font-style: normal;
+    color: #e72364;
+    font-weight: 600;
 }
-.type-list {
-    display: flex;
-    flex-direction: column;
-    gap: .55rem;
-}
-.css-inline {
-    background-color: hsl(340, 80%, 90%);
-    color: hsl(340, 80%, 35%);
-}
-.css-internal {
-    background-color: hsl(28, 90%, 88%);
-    color: hsl(28, 80%, 30%);
-}
-.css-external {
-    background-color: hsl(195, 70%, 88%);
-    color: hsl(195, 70%, 25%);
-}
-         main{
-          padding: 2.5rem 2.8rem;
-          display: flex;
-          flex-direction: column;
-          gap: 2.5rem;
-          animation: fadeUp .6s ease .15s both;
-         }
-         .page{
-          display: flex;
-         }
-         section{
-            background-color: #ffffff;
-            border: 1px solid #e8d9c5;
-            border-radius: 16px;
-            padding: 2rem 2.2rem;
-            box-shadow: 0 4px 24px #2d20131a;
-         }
-         section h2{
-              font-family: 'DM Serif Display', serif;
-              font-size: 1.5rem;
-              margin-bottom: 1.1rem;
-              display: flex;
-              align-items: center;
-              gap: .65rem;
-         }
-         section h2 .tag-chip{
-            font-family: 'Fira Code', monospace;
-            font-size: .62rem;
-            font-weight: 500;
-            background-color: hsl(28, 85%, 92%);
-            color: hsl(28, 80%, 35%);
-            padding: .2rem .6rem;
-            border-radius: 6px;
-         }
-         article{
-         background-image: linear-gradient(135deg, rgb(255, 241, 230), rgb(255, 235, 241));
-          padding: 25px;
-          border-left: 3px solid #d46c11;
-          border-radius: 0 20px 20px 0;
-         }
-          article h3{
-          font-family: 'DM Serif Display', serif;
-          font-size: 1.2rem;
-          margin-bottom: .6rem;
-         }
-         article p {
-            font-size: .92rem;
-            color: #7a6652;
-        }
-        .header-semantic {
-            color: hsl(28, 80%, 30%);
-            padding: .1rem .4rem;
-            border-radius: 4px;
-        }
-        .nav-semantic{
-            background-color: #e3f6fc;
-            color: hsl(195, 70%, 25%);
-            padding: .1rem .4rem;
-            border-radius: 4px;
-        }
-        .main-semantic{
-            background-color: var(--color-accent-l);
-            color: hsl(340, 70%, 35%);
-            padding: .1rem .4rem;
-            border-radius: 4px;
-        }
-       .aside-semantic {
-            background-color: var(--color-green-l);
-            color: hsl(145, 60%, 25%);
-            padding: .1rem .4rem;
-            border-radius: 4px;
-        }
-        .footer-semantic {
-            background-color: var(--color-purple-l);
-            color: hsl(265, 65%, 35%);
-            padding: .1rem .4rem;
-            border-radius: 4px;
-        }
-          details {
-              /* background: var(--grad-cool); */
-              border: 1px solid #e8d9c5;
-              border-radius: 10px;
-              padding: 1rem 1.2rem;
-              margin-top: .8rem;
-              background-image: linear-gradient(135deg, rgb(227, 246, 252), rgb(243, 237, 253));
-          }
-        summary {
-                font-weight: 700;
-          cursor: pointer;
-          color: #1d83a5;
-          font-size: .95rem;
-          list-style: none;
-          display: flex;
-          align-items: center;
-          gap: .5rem;
-        }
-        figure{
-          text-align: center;
-          margin-top: 1rem;
-        }
-        .fig-visual {
-          display: inline-flex;
-          gap: .5rem;
-          padding: 1.5rem 2rem;
-          background: #fdf6ee;
-          border: 1px dashed #e8d9c5;
-          border-radius: 12px;
-          font-size: 2.5rem;
-        }
-        figcaption {
-            margin-top: .5rem;
-            font-size: .8rem;
-            font-style: italic;
-        }
-        
   </style>
 </head>
+
 <body>
   <header>
-      <h1 class="brand">✦ <span>HTML &amp; CSS</span> Webpage</h1>
-      <nav aria-label="Main navigation">
+    <h1 class="brand">✦ <span>HTML &amp; CSS</span> Webpage</h1>
+    <nav aria-label="Main navigation">
       <ul>
         <li><a href="#semantic">Semantic</a></li>
         <li><a href="#formatting">Formatting</a></li>
@@ -276,111 +350,220 @@
         <li><a href="#css-types">CSS Types</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      </nav>
+    </nav>
   </header>
   <div class="page">
     <aside>
       <div class="sidebar-section">
-      <h3>📌 Quick Index</h3>
-      <ul>
-        <li>Title &amp; Meta Tags</li>
-        <li>Semantic HTML Tags</li>
-        <li>Formatting Tags</li>
-        <li>CSS Color Properties</li>
-        <li>Inline CSS</li>
-        <li>Internal CSS</li>
-        <li>External CSS</li>
-      </ul>
-    </div>
+        <h3>📌 Quick Index</h3>
+        <ol>
+          <li>Title &amp; Meta Tags</li>
+          <li>Semantic HTML Tags</li>
+          <li>Formatting Tags</li>
+          <li>CSS Color Properties </li>
+          <li>Inline CSS</li>
+          <li>Internal CSS</li>
+          <li>External CSS</li>
+        </lo>
+      </div>
 
-    <div class="sidebar-section">
-      <h3>🎨 Color Types Used</h3>
-      <div class="color-demo">
-        <div class="colortype">
-          <div class="colortype-box" style="background-color:#d97706;"></div>
-          Hex: <code>#d97706</code>
-        </div>
-        <div class="colortype">
-          <div class="colortype-box" style="background-color:rgb(13,148,136);"></div>
-          RGB: <code>rgb(13,148,136)</code>
-        </div>
-        <div class="colortype">
-          <div class="colortype-box" style="background-color:rgba(225,29,72,.2);border-color:rgba(225,29,72,.5)"></div>
-          RGBA: <code>rgba(...)</code>
-        </div>
-        <div class="colortype">
-          <div class="colortype-box" style="background-color:hsl(265,65%,52%);"></div>
-          HSL: <code>hsl(265,65%,52%)</code>
-        </div>
-        <div class="colortype">
-          <div class="colortype-box" style="background-color:hsla(145,60%,36%,.25);border-color:hsl(145,60%,36%)"></div>
-          HSLA: <code>hsla(...)</code>
-        </div>
-        <div class="colortype">
-          <div class="colortype-box" style="background-color:coral;"></div>
-          Named: <code>coral</code>
+      <div class="sidebar-section">
+        <h3>🎨 Color Types Used</h3>
+        <div class="color-demo">
+          <div class="colortype">
+            <div class="colortype-box" style="background-color:#d97706;"></div>
+            Hex: <code>#d97706</code>
+          </div>
+          <div class="colortype">
+            <div class="colortype-box" style="background-color:rgb(13,148,136);"></div>
+            RGB: <code>rgb(13,148,136)</code>
+          </div>
+          <div class="colortype">
+            <div class="colortype-box" style="background-color:rgba(225,29,72,.2);border-color:rgba(225,29,72,.5)">
+            </div>
+            RGBA: <code>rgba(...)</code>
+          </div>
+          <div class="colortype">
+            <div class="colortype-box" style="background-color:hsl(265,65%,52%);"></div>
+            HSL: <code>hsl(265,65%,52%)</code>
+          </div>
+          <div class="colortype">
+            <div class="colortype-box" style="background-color:hsla(145,60%,36%,.25);border-color:hsl(145,60%,36%)">
+            </div>
+            HSLA: <code>hsla(...)</code>
+          </div>
+          <div class="colortype">
+            <div class="colortype-box" style="background-color:coral;"></div>
+            Named: <code>coral</code>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="sidebar-section">
-      <h3>📄 3 CSS Types</h3>
-      <div class="type-list">
-        <div class="type-item">
-          <strong><span class="css-badge css-inline" style="padding: 0.2rem 1rem;
+      <div class="sidebar-section">
+        <h3>📄 3 CSS Types</h3>
+        <div class="type-list">
+          <div class="type-item">
+            <strong style="display: block;margin-top: 0.3rem;"><span class="css-badge css-inline" style="padding: 0.2rem 1rem;
     border-radius: 12px;">Inline</span></strong>
-          Written directly inside HTML tag using <code>style="..."</code>
-        </div>
-        <div class="type-item">
-          <strong><span class="css-badge css-internal" style="padding: 0.2rem 1rem;
+            Written directly inside HTML tag using <code>style="..."</code>
+          </div>
+          <div class="type-item">
+            <strong style="display: block;margin-top: 0.3rem;"><span class="css-badge css-internal" style="padding: 0.2rem 1rem;
     border-radius: 12px;">Internal</span></strong>
-          Written inside <code>&lt;style&gt;</code> tag in <code>&lt;head&gt;</code>
-        </div>
-        <div class="type-item">
-          <strong ><span style="padding: 0.2rem 1rem;
+            Written inside <code>&lt;style&gt;</code> tag in <code>&lt;head&gt;</code>
+          </div>
+          <div class="type-item">
+            <strong style="display: block;margin-top: 0.3rem;"><span style="padding: 0.2rem 1rem;
     border-radius: 12px;" class="css-badge css-external">External</span></strong>
-          Linked via <code>&lt;link rel="stylesheet"&gt;</code> to a .css file
+            Linked via <code>&lt;link rel="stylesheet"&gt;</code> to a .css file
+          </div>
         </div>
       </div>
-    </div>
     </aside>
     <main>
       <section id="semantic">
-      <h2>🏷 Semantic HTML Tags <span class="tag-chip">&lt;semantic&gt;</span></h2>
-      <p style="font-size:.9rem; margin-bottom:1rem;">
-        Semantic tags give meaning to content. They help browsers, search engines, and screen readers understand page structure.
-      </p>
-
-      <article>
-        <h3>📰 Article: Why Semantics Matter</h3>
-        <p> Using tags like <span class="header-semantic">&lt;header&gt;</span>,
-          <span class="nav-semantic">&lt;nav&gt;</span>,
-          <span class="main-semantic">&lt;main&gt;</span>,
-          <span class="aside-semantic">&lt;aside&gt;</span>, and
-          <span class="footer-semantic">&lt;footer&gt;</span>
-          tells browsers exactly what each section <em>means</em> — not just how it looks.
+        <h2>🏷 Semantic HTML Tags <span class="tag-chip">&lt;semantic&gt;</span></h2>
+        <p style="font-size:.9rem; margin-bottom:1rem;">
+          Semantic tags give meaning to content. They help browsers, search engines, and screen readers understand page
+          structure.
         </p>
-      </article>
-      <details>
-        <summary>What is &lt;header&gt;?</summary>
-        <p>The <code>&lt;header&gt;</code> tag defines introductory content — usually a logo, page title, and navigation. It can appear inside <code>&lt;body&gt;</code>, <code>&lt;section&gt;</code>, or <code>&lt;article&gt;</code>.</p>
-      </details>
-      <details>
-        <summary>What is &lt;aside&gt;?</summary>
-        <p>The <code>&lt;aside&gt;</code> tag holds content that is indirectly related to the main content — like sidebars, pull quotes, or advertisements.</p>
-      </details>
-      <details>
-        <summary>What is &lt;figure&gt; &amp; &lt;figcaption&gt;?</summary>
-        <p>Used together to mark up self-contained media (images, diagrams, code) and their caption.</p>
-      </details>
 
-      <figure>
-        <div class="fig-visual">🌐 🏷️ 📋 🔗 🖼️</div>
-        <figcaption>Semantic HTML elements give your page meaningful structure</figcaption>
-      </figure>
+        <article>
+          <h3>📰 Article: Why Semantics Matter</h3>
+          <p> Using tags like <span class="header-semantic">&lt;header&gt;</span>,
+            <span class="nav-semantic">&lt;nav&gt;</span>,
+            <span class="main-semantic">&lt;main&gt;</span>,
+            <span class="aside-semantic">&lt;aside&gt;</span>, and
+            <span class="footer-semantic">&lt;footer&gt;</span>
+            tells browsers exactly what each section <em>means</em> — not just how it looks.
+          </p>
+        </article>
+        <details>
+          <summary>What is &lt;header&gt;?</summary>
+          <p>The <code>&lt;header&gt;</code> tag defines introductory content — usually a logo, page title, and
+            navigation. It can appear inside <code>&lt;body&gt;</code>, <code>&lt;section&gt;</code>, or
+            <code>&lt;article&gt;</code>.</p>
+        </details>
+        <details>
+          <summary>What is &lt;aside&gt;?</summary>
+          <p>The <code>&lt;aside&gt;</code> tag holds content that is indirectly related to the main content — like
+            sidebars, pull quotes, or advertisements.</p>
+        </details>
+        <details>
+          <summary>What is &lt;figure&gt; &amp; &lt;figcaption&gt;?</summary>
+          <p>Used together to mark up self-contained media (images, diagrams, code) and their caption.</p>
+        </details>
 
-    </section>
+        <figure>
+          <div class="fig-visual">🌐 🏷️ 📋 🔗 🖼️</div>
+          <figcaption>Semantic HTML elements give your page meaningful structure</figcaption>
+        </figure>
+
+      </section>
+      <section id="formating">
+           <h2>✏️ Formatting Tags <span class="tag-chip">&lt;format&gt;</span></h2>
+        <div class="fmt-grid">
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;b&gt; &amp; &lt;strong&gt;</span>
+          <div class="preview">
+            <b>Bold text</b> vs <strong>Important text</strong><br>
+            <small style="color:var(--color-muted)">b = visual; strong = semantic</small>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;i&gt; &amp; &lt;em&gt;</span>
+          <div class="preview">
+            <i>Italic style</i> vs <em>Emphasized meaning</em>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;u&gt; &amp; &lt;s&gt;</span>
+          <div class="preview">
+            <u>Underlined text</u> &nbsp; <s>Strikethrough text</s>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;mark&gt;</span>
+          <div class="preview">
+            This is <mark>highlighted</mark> content using the mark tag.
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;sup&gt; &amp; &lt;sub&gt;</span>
+          <div class="preview">
+            H<sub>2</sub>O &nbsp;&nbsp; x<sup>2</sup> + y<sup>2</sup>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;small&gt;</span>
+          <div class="preview">
+            Normal text. <small>This is small text — great for footnotes.</small>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;code&gt; &amp; &lt;pre&gt;</span>
+          <div class="preview">
+            Use <code>color: red;</code> to change color.<br>
+            <pre style="font-size:.75rem;color:var(--color-primary);margin-top:.3rem">p { margin: 0; }</pre>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;abbr&gt; &amp; &lt;q&gt;</span>
+          <div class="preview">
+            <abbr title="Cascading Style Sheets">CSS</abbr> is awesome. <br>
+            <q>Style is everything.</q>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;del&gt; &amp; &lt;ins&gt;</span>
+          <div class="preview">
+            Price: <del>₹999</del> <ins>₹499</ins> only!
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;kbd&gt;</span>
+          <div class="preview">
+            Press <kbd style="background:#eee;border:1px solid #ccc;border-radius:4px;padding:.1rem .4rem;font-size:.85rem">Ctrl</kbd> +
+            <kbd style="background:#eee;border:1px solid #ccc;border-radius:4px;padding:.1rem .4rem;font-size:.85rem">S</kbd> to save.
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;blockquote&gt;</span>
+          <div class="preview" style="font-size:.85rem">
+            <blockquote style="border-left: 3px solid #d46c11;padding-left: .7rem;font-style: italic;color: #7a6652;">
+              Learning never exhausts the mind.
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="fmt-card">
+          <span class="tag-label">&lt;hr&gt; &amp; &lt;br&gt;</span>
+          <div class="preview">
+            Line one.<br>New line after &lt;br&gt;.
+            <hr style="border: none;border-top: 1px solid hsl(28, 90%, 88%);margin: .5rem 0;">
+            Section break via &lt;hr&gt;.
+          </div>
+        </div>
+
+      </div>
+      <blockquote>
+        "The strength of the web is its universality. Access by everyone regardless of disability is an essential aspect."
+        <cite>— Tim Berners-Lee</cite>
+      </blockquote>
+      </section>
     </main>
   </div>
 </body>
+
 </html>
