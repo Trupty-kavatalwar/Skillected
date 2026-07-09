@@ -126,17 +126,16 @@ header{
 .map{
      flex: 1.4;
       background-color: #1E4A2B;
-      /* background-color: #223526; */
     background-image:
-      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
     background-size: 40px 40px;
     overflow: hidden;
     position: relative;
     border-radius: 15px;
 }   
 .marker{
-     position: absolute;
+    position: absolute;
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -285,7 +284,7 @@ header{
     margin-bottom: 20px;
   }
 
-  .port-row .port-left img{
+   .port-left img{
     padding: 0.5rem;
     border-radius:5px;
     background: #2f5d3a;
@@ -341,3 +340,170 @@ header{
   .cost-row span{
     font-weight: 600;
   }
+  .breadcrumb-sec{
+    background: #1E4A2B;
+   
+  }
+  .charging-container{
+      display: grid;
+      grid-template-columns: 50% 50%;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+  
+  }
+ .charging-sec .charging-itmes:last-child {
+  padding: 30px;
+      border-radius: 10px;
+    background: #fff;
+  }
+ 
+ .charging-info{
+  display: flex;
+  gap: 2rem;
+    margin-top: 1rem;
+    color: #fff;
+ }
+ .charging-card h5{
+  font-size: 1rem;
+    font-weight: 300;
+ }
+ .charging-card h6 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  }
+   .charging-card h6 span{
+  font-size: 0.8rem;
+   font-weight: 300;
+   }
+    .port-card {
+    background: #fff;
+    border: 1px solid #eae7dd;
+    border-radius: 10px;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .port-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .port-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    background: #22422b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .badge-in-use{
+    background: #c97c3d1f;
+    color: #000;
+    padding: 5px 20px;
+    border-radius: 40px;
+    border:1px solid #c97c3d;
+  }
+  .badge-available{
+     padding: 5px 20px;
+      color: #000;
+    border-radius: 40px;
+    background: #22422b2c;
+     border:1px solid #22422b;
+  }
+  .charging-itmes h5{
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .port-left .port-info h6{
+    font-size: 0.9rem;
+    margin-bottom: 0rem;
+  }
+
+  .box {
+    background: #fff;
+    border: 1px solid #eae7dd;
+    border-radius: 10px;
+    padding:30px;
+    margin-bottom: 16px;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0eee7;
+  }
+
+  .price-row:last-of-type { border-bottom: none; }
+
+  .price-label { color: #666; }
+  .price-value { font-weight: 600; }
+
+  .reserve-btn {
+    width: 100%;
+    background: #c07a2e;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+        margin-top: 20px;
+  }
+
+  .network-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .network-sub {
+    font-size: 12px;
+    color: #666;
+  }
+ .amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+        list-style-type: none;
+    margin-bottom: 22px;
+  }
+
+  .amenities li {
+        border: 1px dashed #cfcdcb;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #444;
+    text-align: center;
+    width: 180px;
+  }
+.charging-sec h5{
+  font-size: 1.4rem;
+ font-weight: 500;
+    margin-bottom: 1rem;
+}
+.review-stars{
+      float: inline-end;
+    font-size: 1.5rem;
+    color: #fda500;
+
+}
+hr{
+  margin:0.5rem 0;
+}
+.review-name{
+      font-weight: 500;
+    font-size: 1rem;
+}
