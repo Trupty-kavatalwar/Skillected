@@ -207,14 +207,14 @@ header{
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #d93030;
+    background: #c97c3d;
     display: inline-block;
   }
 
   .price {
     font-size: 14px;
     font-weight: 600;
-    color: #d93030;
+    color: #c97c3d;
     white-space: nowrap;
   }
   footer{
@@ -405,14 +405,14 @@ header{
   }
   .badge-in-use{
     background: #c97c3d1f;
-    color: #000;
+    color: #c97c3d;
     padding: 5px 20px;
     border-radius: 40px;
     border:1px solid #c97c3d;
   }
   .badge-available{
      padding: 5px 20px;
-      color: #000;
+      color: #22422b;
     border-radius: 40px;
     background: #22422b2c;
      border:1px solid #22422b;
@@ -507,3 +507,162 @@ hr{
       font-weight: 500;
     font-size: 1rem;
 }
+
+  .eyebrow {
+    color: #c07a2e;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+
+
+  /* ---------- METRIC CARDS ---------- */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .metric-card {
+    background: #ffffff;
+    border: 1px solid #eae7dd;
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .metric-card h5 {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 8px;
+  }
+
+  .metric-card h6 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  .metric-unit {
+    font-size: 13px;
+    font-weight: 400;
+    color: #777;
+  }
+
+  .metric-card p {
+    font-size: 12px;
+    color: #2f5d3a;
+  }
+
+  /* ---------- MAIN GRID ---------- */
+  .main-grid {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .panel {
+    background: #ffffff;
+    border: 1px solid #eae7dd;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .chart-panel {
+    flex: 1.5;
+  }
+
+  .health-panel {
+    flex: 1;
+  }
+
+  h4{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+
+  /* ---------- BAR CHART ---------- */
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.1rem;
+    height: 365px;
+    justify-content: center;
+  }
+
+  .bar-col {
+    flex: 0.135;
+    text-align: center;
+  }
+
+  .bar-col h5 {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 4px;
+  }
+
+ .bar-col h6{
+    background: #22422b;
+    border-radius: 3px;
+  }
+
+  .bar.highlight {
+    background: #c07a2e;
+  }
+
+ .bar-col p{
+    font-size: 11px;
+    color: #999;
+    margin-top: 6px;
+  }
+
+  /* ---------- STATION HEALTH LIST ---------- */
+  .health-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0eee7;
+  }
+
+  .health-row:last-child {
+    border-bottom: none;
+  }
+
+  .health-row h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .health-row h6 {
+    font-size: 12px;
+    color: #888;
+  }
+
+ .health-row p {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .status-online {
+    color: #1c5c34;
+    padding: 5px 20px;
+    border-radius: 40px;
+    background: #22422b2c;
+     border:1px solid #22422b;
+  }
+
+  .status-flagged {
+    background: #c97c3d1f;
+    color: #c97c3d;
+    padding: 5px 20px;
+    border-radius: 40px;
+    border: 1px solid #c97c3d;
+  }

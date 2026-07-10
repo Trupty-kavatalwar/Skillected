@@ -21,129 +21,130 @@
             <a href="dashboard.html" class="active">Dashboard</a>
         </nav>
     </header>
-    <section class="breadcrumb-sec">
+    <section class="dashboard-sec">
         <div class="section-heading">
-            <h6><a href="index.html" style="color: #c97c3d;">Back to map</a> </h6>
-            <h2 style="color: #fff">Riverside Supercharge Hub</h2>
-            <p style="color: #fff">412 Riverside Drive &middot; Open 24 hours</p>
+            <h6> Operator view &middot; Riverside network</h6>
+            <h2>Dashboard</h2>
         </div>
-        <div class="charging-info">
-            <div class="charging-card">
-                <h5>Ports free</h5>
-                <h6>6<span>/8</span></h6>
+        <div class="metrics">
+            <div class="metric-card">
+                <h5>Energy delivered</h5>
+                <h6>4,820 <span class="metric-unit">kWh</span></h6>
+                <p>&uarr; 12% vs last week</p>
             </div>
-            <div class="charging-card">
-                <h5>Max speed</h5>
-                <h6>350<span>/kW</span></h6>
+            <div class="metric-card">
+                <h5>Energy delivered</h5>
+                <h6>4,820 <span class="metric-unit">kWh</span></h6>
+                <p>&uarr; 12% vs last week</p>
             </div>
-            <div class="charging-card">
-                <h5>Price</h5>
-                <h6>$0.38<span>/kWh</span></h6>
+            <div class="metric-card">
+                <h5>Energy delivered</h5>
+                <h6>4,820 <span class="metric-unit">kWh</span></h6>
+                <p>&uarr; 12% vs last week</p>
             </div>
-            <div class="charging-card">
-                <h5>Rating</h5>
-                <h6>4.7<span>/5</span></h6>
+            <div class="metric-card">
+                <h5>Energy delivered</h5>
+                <h6>4,820 <span class="metric-unit">kWh</span></h6>
+                <p>&uarr; 12% vs last week</p>
             </div>
         </div>
-    </section>
-    <section class="charging-sec">
-        <h5>Charging ports</h5>
-       <div class="charging-container">
-         <div class="charging-itmes">
-
-            <div class="port-card">
-                <div class="port-left">
-                    <img src="images/flash.png" alt="Logo" width="35px" height="35px">
-
-                    <div class="port-info">
-                        <h6>Port A1 · CCS</h6>
-                        <p>350kW max</p>
+        <div class="main-grid">
+            <div class="panel chart-panel">
+                <h4>Energy delivered, last 7 days</h4>
+                <div class="chart">
+                    <div class="bar-col">
+                        <h5>580</h5>
+                        <h6 style="height: 200px;"></h6>
+                        <p>Mon</p>
+                    </div>
+                    <div class="bar-col">
+                        <h5>710</h5>
+                        <h6 style="height: 222px;"></h6>
+                        <p>Tue</p>
+                    </div>
+                    <div class="bar-col">
+                        <h5>650</h5>
+                        <h6 style="height: 212px;"></h6>
+                        <p>Wed</p>
+                    </div>
+                    <div class="bar-col">
+                        <h5>840</h5>
+                        <h6 style="height: 245px;"></h6>
+                        <p>Thu</p>
+                    </div>
+                    <div class="bar-col">
+                        <h5>990</h5>
+                        <h6 class="bar highlight" style="height: 270px;"></h6>
+                        <p>Fri</p>
+                    </div>
+                    <div class="bar-col">
+                        <h5>760</h5>
+                        <h6 style="height: 231px;"></h6>
+                        <p>Sat</p>
+                    </div>
+                    <div class="bar-col">
+                        <h5>290</h5>
+                        <h6 style="height: 100px;"></h6>
+                        <p>Sun</p>
                     </div>
                 </div>
-                <div class="badge badge-available">AVAILABLE</div>
             </div>
-            <div class="port-card">
-                <div class="port-left">
-                    <img src="images/flash.png" alt="Logo" width="35px" height="35px">
+            <div class="panel health-panel">
+                <h4>Station health</h4>
 
-                    <div class="port-info">
-                        <h6>Port A1 · CCS</h6>
-                        <p>350kW max</p>
+                <div class="health-row">
+                    <div>
+                        <h5 class="station-name">Riverside hub</h5>
+                        <h6 class="station-ports">8 ports</h6>
                     </div>
+                    <p class="status-badge status-online">Online</p>
                 </div>
-                <div class="badge badge-in-use">CHARGE &middot; 42 MIN LEFT</div>
-            </div>
-            <div class="port-card">
-                <div class="port-left">
-                    <img src="images/flash.png" alt="Logo" width="35px" height="35px">
 
-                    <div class="port-info">
-                        <h6>Port A1 · CCS</h6>
-                        <p>350kW max</p>
+                <div class="health-row">
+                    <div>
+                        <h5 class="station-name">Harbor view</h5>
+                        <h6 class="station-ports">6 ports</h6>
                     </div>
+                    <p class="status-badge status-flagged">1 port flagged</p>
                 </div>
-                <div class="badge-available">AVAILABLE</div>
-            </div>
 
+                <div class="health-row">
+                    <div>
+                        <h5 class="station-name">Riverside hub</h5>
+                        <h6 class="station-ports">8 ports</h6>
+                    </div>
+                    <p class="status-badge status-online">Online</p>
+                </div>
 
-        </div>
-        <div class="charging-itmes">
-            <div class="box">
-                <div class="price-row">
-                    <span class="price-label">Energy rate</span>
-                    <span class="price-value">$0.38/kWh</span>
+                <div class="health-row">
+                    <div>
+                        <h5 class="station-name">Harbor view</h5>
+                        <h6 class="station-ports">6 ports</h6>
+                    </div>
+                    <p class="status-badge status-flagged">1 port flagged</p>
                 </div>
-                <div class="price-row">
-                    <span class="price-label">Session fee</span>
-                    <span class="price-value">$1.00</span>
+
+                <div class="health-row">
+                    <div>
+                        <h5 class="station-name">Riverside hub</h5>
+                        <h6 class="station-ports">8 ports</h6>
+                    </div>
+                    <p class="status-badge status-online">Online</p>
                 </div>
-                <div class="price-row">
-                    <span class="price-label">Idle fee (after 10min)</span>
-                    <span class="price-value">$0.40/min</span>
+
+                <div class="health-row">
+                    <div>
+                        <h5 class="station-name">Harbor view</h5>
+                        <h6 class="station-ports">6 ports</h6>
+                    </div>
+                    <p class="status-badge status-flagged">1 port flagged</p>
                 </div>
-                <div class="price-row">
-                    <span class="price-label">Est. full charge</span>
-                    <span class="price-value">$22 &ndash; $28</span>
-                </div>
-                <div class="reserve-btn">RESERVE A PORT</div>
-            </div>
-        </div>
-        <div class="charging-itmes">
-            <h5>Amenities</h5>
-            <ul class="amenities">
-                <li>Covered parking</li>
-                <li>Restrooms</li>
-                <li>Coffee nearby</li>
-                <li>Wi-Fi</li>
-                <li>Lit at night</li>
-            </ul>
-        </div>
-        <div class="charging-itmes">
-            <h5 style="margin-bottom:0">Network status</h5>
-            <p>All systems operational. Last checked 4 minutes ago.</p>
-        </div>
-       </div>
-        <div class="charging-container-bottom" style="margin-top:2rem">
-            <h5>Recent reviews</h5>
-            <div class="review">
-                <div class="review-top">
-                    <span class="review-name">Dana K.</span>
-                    <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-                </div>
-                <div class="review-text">Fast and reliable. Plenty of free ports even at peak hours.</div>
-            </div>
-            <hr>
-            <div class="review">
-                <div class="review-top">
-                    <span class="review-name">Omar R.</span>
-                    <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-                </div>
-                <div class="review-text">Good speeds, a bit of a wait on weekend mornings.</div>
+
             </div>
         </div>
     </section>
     <footer>
-        <p>© 2026 All Rights Reserved. Design & Developed by Trupti Kavtalwar.</p>
+        <p>© 2026 All Rights Reserved. Design & Developed by Trupty Kavatalwar.</p>
     </footer>
 </body>
 
