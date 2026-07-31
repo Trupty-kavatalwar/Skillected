@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript & HTML/CSS — Explained Answers</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --bg: #12151b;
+    --surface: #1a1f28;
+    --surface2: #1f2530;
+    --line: #2a3140;
+    --text: #e9e7de;
+    --muted: #8891a1;
+    --accent: #f0b429;
+    --accent-dim: #7a611e;
+    --teal: #5fb3c0;
+    --code-bg: #0d1016;
+    --output-bg: #14201a;
+    --output-border: #2c4a3a;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height:1.55;
+    padding: 0 0 100px;
+  }
+
+  header{
+    padding: 56px 24px 32px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  h1{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .sub{
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14.5px;
+    max-width: 65ch;
+  }
+
+  nav.toc{
+    max-width: 900px;
+    margin: 28px auto 0;
+    padding: 0 24px;
+  }
+
+  nav.toc a{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin: 0 8px 8px 0;
+    text-decoration:none;
+  }
+  nav.toc a:hover{ border-color: var(--teal); }
+
+  main{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .module{
+    margin-top: 60px;
+    scroll-margin-top: 20px;
+  }
+
+  .module-head{
+    display:flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .module-index{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .module-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .module-desc{
+    color: var(--muted);
+    font-size: 13.5px;
+    margin: 6px 0 24px;
+  }
+
+  .qcard{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+
+  .qhead{
+    display:flex;
+    gap: 10px;
+    align-items:flex-start;
+    margin-bottom: 14px;
+  }
+
+  .qnum{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    background: var(--accent);
+    min-width: 24px;
+    height: 24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius: 6px;
+    flex-shrink:0;
+    font-weight:600;
+  }
+
+  .qtext{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--text);
+    padding-top: 2px;
+  }
+
+  .explain{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 640px){
+    .explain{ grid-template-columns: 1fr; }
+  }
+
+  .exp-block{
+    background: var(--surface2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .exp-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .exp-text{
+    font-size: 13.5px;
+    color: var(--text);
+  }
+
+  .exp-block.mr .exp-text{
+    font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    font-size: 14px;
+  }
+
+  .code-label, .output-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color: var(--muted);
+    margin: 12px 0 6px;
+  }
+
+  pre.code{
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height:1.6;
+    color: #d8dee9;
+  }
+
+  .output{
+    background: var(--output-bg);
+    border: 1px solid var(--output-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: #a8e0b8;
+    white-space: pre-wrap;
+  }
+
+  footer{
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding: 24px;
+    text-align:center;
+    color: var(--muted);
+    font-size: 12.5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .backtop{
+    display:inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration:none;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .backtop:hover{ color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">// explained_answers.js</div>
+  <h1>JavaScript &amp; HTML/CSS — Explained Answers</h1>
+  <p class="sub">Every question paired with an English + Marathi explanation, a working code example, and the expected output. Companion reference to the practice checklist.</p>
+</header>
+
+<nav class="toc" id="toc">
+  <a href="#sec-js2">JS Assignment (Part 2)</a>
+  <a href="#sec-events">Event Handling</a>
+  <a href="#sec-projects">Mini Projects</a>
+  <a href="#sec-topics">Project Topic List</a>
+  <a href="#sec-a3prog">HTML/CSS Assignment 3 — Programs</a>
+  <a href="#sec-a3theory">HTML/CSS Assignment 3 — Theory</a>
+  <a href="#sec-blocks">Block-Level Elements Set</a>
+  <a href="#sec-lists">Nested List Question Set</a>
+  <a href="#sec-a2">Assignment 2 — Links, Marquee, Bookmarks, Flexbox</a>
+  <a href="#sec-htmlcss">HTML & CSS Assignment — Basics, Formatting, CSS Types</a>
+</nav>
+
+<main id="main">
+
+<div class="module" id="sec-js2">
+  <div class="module-head">
+    <span class="module-index">06</span>
+    <span class="module-title">JavaScript Assignment Questions — Part 2</span>
+  </div>
+  <div class="module-desc">Fundamentals, arrays, and array methods.</div>
+</div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">1</span>
+      <span class="qtext">What is JavaScript? Explain its benefits.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">JavaScript is a lightweight, interpreted programming language used to make web pages interactive. It runs directly in the browser and can also run on servers using Node.js. Benefits: adds interactivity (animations, validation, dynamic content), runs on client-side so pages respond instantly without reloading, works with HTML/CSS on every browser, and has a huge ecosystem of libraries and frameworks (React, Node.js, etc).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">JavaScript ही एक हलकी (lightweight), इंटरप्रिटेड प्रोग्रामिंग भाषा आहे जी वेब पेजेस इंटरॅक्टिव्ह बनवण्यासाठी वापरली जाते. ती ब्राउझरमध्ये थेट चालते आणि Node.js च्या मदतीने सर्व्हरवरही चालू शकते. फायदे: पेज इंटरॅक्टिव्ह बनते (अ‍ॅनिमेशन, व्हॅलिडेशन, डायनॅमिक कंटेंट), क्लायंट-साइडवर चालते त्यामुळे पेज रीलोड न करता त्वरित प्रतिसाद मिळतो, HTML/CSS सोबत सर्व ब्राउझरवर काम करते, आणि React, Node.js सारख्या मोठ्या लायब्ररी व फ्रेमवर्क्सचा वापर करता येतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">console.log(&quot;JavaScript makes web pages interactive!&quot;);
+// It runs in the browser without needing to reload the page
+document.title = &quot;Hello from JavaScript&quot;;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">JavaScript makes web pages interactive!</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">2</span>
+      <span class="qtext">Differentiate between Internal JavaScript and External JavaScript.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Internal JavaScript is written directly inside the HTML file using a &lt;script&gt; tag, usually within &lt;head&gt; or &lt;body&gt;. External JavaScript is written in a separate .js file and linked to the HTML using the src attribute. External JS is preferred for larger projects because it keeps code organized, reusable across pages, and easier to maintain/cache.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Internal JavaScript म्हणजे HTML फाइलमध्येच &lt;script&gt; टॅगच्या आत लिहिलेला कोड, जो साधारणपणे &lt;head&gt; किंवा &lt;body&gt; मध्ये असतो. External JavaScript म्हणजे वेगळ्या .js फाइलमध्ये लिहिलेला कोड जो src attribute वापरून HTML शी जोडला जातो. मोठ्या प्रोजेक्ट्ससाठी External JS चांगले असते कारण त्यामुळे कोड व्यवस्थित राहतो, अनेक पेजेसवर पुन्हा वापरता येतो आणि मेंटेन/कॅश करणे सोपे जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!-- Internal JavaScript --&gt;
+&lt;script&gt;
+  console.log(&quot;This is internal JS&quot;);
+&lt;/script&gt;
+
+&lt;!-- External JavaScript --&gt;
+&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">This is internal JS
+(External JS output depends on script.js contents)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">3</span>
+      <span class="qtext">Write a program to display &quot;Good Morning&quot; using External JavaScript.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Create a separate file (e.g., script.js) containing the code to display the message, then link it inside the HTML file using the &lt;script src="script.js"&gt;&lt;/script&gt; tag.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">"Good Morning" दाखवण्यासाठी एक वेगळी फाइल (उदा. script.js) तयार करा ज्यात संदेश दाखवण्याचा कोड असेल, नंतर ती फाइल HTML मध्ये &lt;script src="script.js"&gt;&lt;/script&gt; टॅगच्या मदतीने जोडा.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!-- index.html --&gt;
+&lt;body&gt;
+  &lt;h1 id=&quot;msg&quot;&gt;&lt;/h1&gt;
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+// script.js
+document.getElementById(&quot;msg&quot;).innerText = &quot;Good Morning&quot;;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Good Morning  (displayed as heading text on the page)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">4</span>
+      <span class="qtext">Explain var, let, and const with examples.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">var is function-scoped and can be redeclared/updated; it is hoisted and initialized as undefined. let is block-scoped, can be updated but not redeclared in the same scope. const is block-scoped and cannot be updated or redeclared — it must be initialized at declaration and used for values that won't change.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">var हे function-scoped असते आणि पुन्हा declare/update करता येते; ते hoist होते आणि undefined म्हणून initialize होते. let हे block-scoped असते, ते update करता येते पण त्याच scope मध्ये पुन्हा declare करता येत नाही. const हे block-scoped असते आणि त्याला update किंवा पुन्हा declare करता येत नाही — ते declare करतानाच value द्यावी लागते आणि न बदलणाऱ्या value साठी वापरले जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">var a = 10;
+a = 20; // allowed
+
+let b = 30;
+b = 40; // allowed, but cannot redeclare with let in same scope
+
+const c = 50;
+// c = 60; // Error: Assignment to constant variable
+
+console.log(a, b, c);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">20 40 50</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">5</span>
+      <span class="qtext">What is Variable Hoisting in JavaScript?</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Hoisting is JavaScript's default behavior of moving declarations to the top of their scope before code execution. var declarations are hoisted and initialized as undefined, so they can be referenced before their line without an error (but their value will be undefined). let and const are also hoisted but stay in a 'temporal dead zone' — accessing them before declaration throws an error.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Hoisting म्हणजे JavaScript कोड execute होण्यापूर्वी variable आणि function च्या declarations आपोआप त्यांच्या scope च्या सुरुवातीला नेण्याची डिफॉल्ट प्रक्रिया. var declarations hoist होतात आणि undefined म्हणून initialize होतात, त्यामुळे त्यांना ओळीच्या आधी वापरले तरी error येत नाही (पण value undefined असते). let आणि const सुद्धा hoist होतात पण ते 'temporal dead zone' मध्ये राहतात — declaration आधी वापरल्यास error येतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">console.log(x); // undefined (hoisted)
+var x = 5;
+
+console.log(y); // ReferenceError
+let y = 10;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">undefined
+Uncaught ReferenceError: Cannot access &#x27;y&#x27; before initialization</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">6</span>
+      <span class="qtext">Create variables for name, age, and city and display them.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Declare three variables using let or const, assign values to them, and print them together using a template literal or console.log with multiple arguments.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">name, age, आणि city साठी तीन variables let किंवा const वापरून तयार करा, त्यांना values द्या, आणि template literal किंवा console.log मध्ये अनेक arguments वापरून त्या एकत्र दाखवा.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let name = &quot;Adnan&quot;;
+let age = 22;
+let city = &quot;Pune&quot;;
+
+console.log(`Name: ${name}, Age: ${age}, City: ${city}`);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Name: Adnan, Age: 22, City: Pune</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">7</span>
+      <span class="qtext">Write a program using if-else to check whether a number is positive or negative.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Use an if statement to check if the number is greater than 0 (positive), else check if it's less than 0 (negative), else it's zero.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">if statement वापरून तपासा की संख्या 0 पेक्षा मोठी आहे का (positive), नसेल तर 0 पेक्षा लहान आहे का ते तपासा (negative), आणि दोन्ही नसेल तर ती संख्या शून्य आहे.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let num = -7;
+
+if (num &gt; 0) {
+  console.log(&quot;Positive number&quot;);
+} else if (num &lt; 0) {
+  console.log(&quot;Negative number&quot;);
+} else {
+  console.log(&quot;Zero&quot;);
+}</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Negative number</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">8</span>
+      <span class="qtext">Print numbers from 1 to 10 using a for loop.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A for loop runs a counter from 1 to 10, printing each value in the loop body.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">for loop मध्ये counter 1 पासून 10 पर्यंत चालवला जातो आणि प्रत्येक value loop च्या आत print केली जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">for (let i = 1; i &lt;= 10; i++) {
+  console.log(i);
+}</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">9</span>
+      <span class="qtext">Print numbers from 10 to 1 using a while loop.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A while loop checks the condition before each iteration; here it starts at 10 and decrements until it reaches 1.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">while loop प्रत्येक iteration आधी अट तपासतो; इथे तो 10 पासून सुरू होऊन 1 पर्यंत कमी होत जातो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let i = 10;
+while (i &gt;= 1) {
+  console.log(i);
+  i--;
+}</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">10
+9
+8
+7
+6
+5
+4
+3
+2
+1</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">10</span>
+      <span class="qtext">Create an array of fruits and display all elements.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">An array stores multiple values in a single variable. Use a for loop or forEach to display each element.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Array एका variable मध्ये अनेक values साठवते. प्रत्येक element दाखवण्यासाठी for loop किंवा forEach वापरा.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let fruits = [&quot;Apple&quot;, &quot;Banana&quot;, &quot;Mango&quot;, &quot;Grapes&quot;];
+
+fruits.forEach(fruit =&gt; console.log(fruit));</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Apple
+Banana
+Mango
+Grapes</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">11</span>
+      <span class="qtext">Explain Arrays in JavaScript with examples.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">An array is an ordered collection of values, which can be of any type, stored under a single variable name and accessed by index (starting from 0). Arrays are resizable and come with many built-in methods.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Array म्हणजे कोणत्याही प्रकारच्या values चा क्रमबद्ध संग्रह, जो एका variable नावाखाली साठवला जातो आणि index (0 पासून सुरू होणारा) वापरून ऍक्सेस केला जातो. Arrays चा आकार बदलता येतो आणि त्यात अनेक built-in methods असतात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let numbers = [10, 20, 30];
+console.log(numbers[0]); // first element
+console.log(numbers.length); // size of array</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">10
+3</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">12</span>
+      <span class="qtext">Write a program demonstrating push(), pop(), shift(), and unshift().</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">push() adds an element to the end, pop() removes the last element, shift() removes the first element, and unshift() adds an element to the beginning of the array.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">push() हे array च्या शेवटी नवीन element जोडते, pop() शेवटचा element काढते, shift() पहिला element काढते, आणि unshift() array च्या सुरुवातीला नवीन element जोडते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [2, 3, 4];
+
+arr.push(5);      // [2,3,4,5]
+arr.pop();         // [2,3,4]
+arr.unshift(1);    // [1,2,3,4]
+arr.shift();       // [2,3,4]
+
+console.log(arr);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">[2, 3, 4]</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">13</span>
+      <span class="qtext">Write a program using slice() to extract elements from an array.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">slice(start, end) returns a shallow copy of a portion of the array from start index up to (but not including) end index, without modifying the original array.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">slice(start, end) हे मूळ array मध्ये कोणताही बदल न करता, start index पासून end index पर्यंत (end वगळून) array चा एक भाग नवीन array म्हणून परत करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [10, 20, 30, 40, 50];
+let sliced = arr.slice(1, 4);
+
+console.log(sliced);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">[20, 30, 40]</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">14</span>
+      <span class="qtext">Write a program using splice() to add and remove elements.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">splice(start, deleteCount, item1, item2...) changes the original array by removing or replacing existing elements and/or adding new elements at a given position.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">splice(start, deleteCount, item1, item2...) मूळ array मध्येच बदल करते — दिलेल्या स्थानावरून elements काढते किंवा बदलते आणि/किंवा नवीन elements जोडते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [1, 2, 3, 4, 5];
+
+arr.splice(1, 2, &quot;a&quot;, &quot;b&quot;); // remove 2 items from index 1, insert &quot;a&quot;,&quot;b&quot;
+
+console.log(arr);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">[1, &#x27;a&#x27;, &#x27;b&#x27;, 4, 5]</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">15</span>
+      <span class="qtext">Reverse an array using reverse().</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The reverse() method reverses the order of elements in an array in place (it modifies the original array).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">reverse() ही method array मधील elements चा क्रम उलटा करते आणि मूळ array मध्येच बदल करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+
+console.log(arr);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">[5, 4, 3, 2, 1]</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">16</span>
+      <span class="qtext">Find the index of an element using indexOf().</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">indexOf() returns the first index at which a given element is found in the array, or -1 if it's not present.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">indexOf() दिलेला element array मध्ये पहिल्यांदा कोणत्या index वर सापडतो तो index परत करते, आणि जर element नसेल तर -1 परत करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;b&quot;];
+console.log(arr.indexOf(&quot;b&quot;));</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">1</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">17</span>
+      <span class="qtext">Find the last occurrence of an element using lastIndexOf().</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">lastIndexOf() returns the last index at which a given element is found in the array, searching from the end.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">lastIndexOf() दिलेला element array मध्ये शेवटच्या वेळी कोणत्या index वर सापडतो तो index परत करते (शेवटपासून शोध सुरू होतो).</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;b&quot;];
+console.log(arr.lastIndexOf(&quot;b&quot;));</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">3</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">18</span>
+      <span class="qtext">Check whether an element exists in an array using includes().</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">includes() returns true if the array contains the specified value, and false otherwise.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">includes() ही method array मध्ये दिलेली value आहे का ते तपासते — असेल तर true आणि नसेल तर false परत करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [&quot;apple&quot;, &quot;banana&quot;, &quot;mango&quot;];
+console.log(arr.includes(&quot;banana&quot;));
+console.log(arr.includes(&quot;grapes&quot;));</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">true
+false</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">19</span>
+      <span class="qtext">Write a program to find the largest number in an array.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Loop through the array and keep track of the maximum value seen so far, or use Math.max() with the spread operator.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Array मधून loop चालवून आतापर्यंतची सर्वात मोठी value लक्षात ठेवा, किंवा spread operator सोबत Math.max() वापरा.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [12, 45, 7, 89, 34];
+let largest = Math.max(...arr);
+
+console.log(largest);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">89</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">20</span>
+      <span class="qtext">Write a program to calculate the sum of all array elements.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Use a loop or the reduce() method to add up every element in the array and produce a total.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Array मधील प्रत्येक element एकत्र जोडून एकूण बेरीज मिळवण्यासाठी loop किंवा reduce() method वापरा.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">let arr = [10, 20, 30, 40];
+let sum = arr.reduce((total, num) =&gt; total + num, 0);
+
+console.log(sum);</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">100</div>
+  </div>
+
+
+
+<div class="module" id="sec-a2">
+  <div class="module-head">
+    <span class="module-index">07</span>
+    <span class="module-title">Assignment 2 — Links, Marquee, Bookmarks &amp; Flexbox</span>
+  </div>
+  <div class="module-desc">Theory Questions (1-10)</div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">1</span>
+      <span class="qtext">What is the &lt;a&gt; (anchor) tag in HTML? Explain its syntax and uses.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The &lt;a&gt; tag defines a hyperlink used to navigate from one page to another, to a section on the same page, or to open emails/files. Its main attribute is href, which holds the destination URL. Syntax: &lt;a href="url"&gt;link text&lt;/a&gt;.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;a&gt; टॅग हा हायपरलिंक तयार करण्यासाठी वापरला जातो — एका पेजवरून दुसऱ्या पेजवर, त्याच पेजवरील एखाद्या सेक्शनवर, किंवा ईमेल/फाइल उघडण्यासाठी. त्याचा मुख्य attribute href असतो, ज्यात destination URL दिलेला असतो. Syntax: &lt;a href="url"&gt;link text&lt;/a&gt;.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;https://example.com&quot;&gt;Visit Example&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Visit Example  (clickable link navigating to https://example.com)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">2</span>
+      <span class="qtext">Explain the different types of hyperlinks in HTML with examples.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">There are mainly three types: (1) Internal link — links to another page within the same website. (2) External link — links to a page on a different website. (3) Same-page (bookmark) link — links to a section within the same page using an id.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">मुख्यतः तीन प्रकार असतात: (1) Internal link — त्याच वेबसाइटमधील दुसऱ्या पेजला जोडणारी लिंक. (2) External link — वेगळ्या वेबसाइटच्या पेजला जोडणारी लिंक. (3) Same-page (bookmark) link — id वापरून त्याच पेजमधील एका सेक्शनला जोडणारी लिंक.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;about.html&quot;&gt;Internal Link&lt;/a&gt;
+&lt;a href=&quot;https://google.com&quot;&gt;External Link&lt;/a&gt;
+&lt;a href=&quot;#section2&quot;&gt;Bookmark Link&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Internal Link | External Link | Bookmark Link  (three separate clickable links)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">3</span>
+      <span class="qtext">What is the target attribute in HTML? Explain its types (_self, _blank, _parent, _top).</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The target attribute controls where a linked page opens. _self (default) opens in the same tab/frame. _blank opens in a new tab/window. _parent opens in the parent frame. _top opens in the full body of the window, breaking out of all frames.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">target attribute हे linked page कुठे उघडेल हे ठरवते. _self (डीफॉल्ट) तोच tab/frame मध्ये उघडते. _blank नवीन tab/window मध्ये उघडते. _parent हे parent frame मध्ये उघडते. _top हे सर्व frames मधून बाहेर पडून पूर्ण window मध्ये उघडते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;page.html&quot; target=&quot;_self&quot;&gt;Same Tab&lt;/a&gt;
+&lt;a href=&quot;page.html&quot; target=&quot;_blank&quot;&gt;New Tab&lt;/a&gt;
+&lt;a href=&quot;page.html&quot; target=&quot;_parent&quot;&gt;Parent Frame&lt;/a&gt;
+&lt;a href=&quot;page.html&quot; target=&quot;_top&quot;&gt;Top Window&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Four links, each opening page.html in a different context as described</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">4</span>
+      <span class="qtext">What is URL path in HTML? Explain absolute URL and relative URL with examples.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A URL path tells the browser where a resource is located. An absolute URL includes the full address (protocol + domain + path), e.g. https://site.com/images/pic.jpg, and works regardless of the current page location. A relative URL is based on the current page's location, e.g. images/pic.jpg, and is shorter but only works within the same site structure.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">URL path म्हणजे resource कुठे आहे हे ब्राउझरला सांगणारा पत्ता. Absolute URL मध्ये पूर्ण पत्ता असतो (protocol + domain + path), उदा. https://site.com/images/pic.jpg, आणि सध्याच्या पेजची लोकेशन काहीही असो तरी तो काम करतो. Relative URL हा सध्याच्या पेजच्या लोकेशनवर आधारित असतो, उदा. images/pic.jpg, तो लहान असतो पण फक्त त्याच साइट स्ट्रक्चरमध्ये काम करतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!-- Absolute URL --&gt;
+&lt;img src=&quot;https://example.com/images/logo.png&quot;&gt;
+
+&lt;!-- Relative URL --&gt;
+&lt;img src=&quot;images/logo.png&quot;&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Both display the logo image; absolute works from anywhere, relative works only within the site&#x27;s own folder structure</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">5</span>
+      <span class="qtext">Differentiate between internal link and external link.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">An internal link points to another page within the same website/domain (e.g. href="contact.html"), used for site navigation. An external link points to a page on a completely different website/domain (e.g. href="https://wikipedia.org"), usually used to reference outside resources, and is often opened in a new tab.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Internal link ही त्याच वेबसाइट/डोमेनमधील दुसऱ्या पेजला जोडते (उदा. href="contact.html"), ती साइटच्या navigation साठी वापरली जाते. External link ही पूर्णपणे वेगळ्या वेबसाइट/डोमेनच्या पेजला जोडते (उदा. href="https://wikipedia.org"), ती बाहेरील संदर्भासाठी वापरली जाते आणि सहसा नवीन tab मध्ये उघडली जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;contact.html&quot;&gt;Internal Link&lt;/a&gt;
+&lt;a href=&quot;https://wikipedia.org&quot; target=&quot;_blank&quot;&gt;External Link&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Internal Link (stays on same site) | External Link (opens Wikipedia in new tab)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">6</span>
+      <span class="qtext">Explain how to create an image as a hyperlink in HTML.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Wrap an &lt;img&gt; tag inside an &lt;a&gt; tag. Clicking anywhere on the image will then navigate to the href destination, just like a text link.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;img&gt; टॅगला &lt;a&gt; टॅगच्या आत ठेवा. मग इमेजवर कुठेही क्लिक केल्यास, टेक्स्ट लिंकप्रमाणेच href मध्ये दिलेल्या ठिकाणी नेव्हिगेट होईल.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;https://example.com&quot;&gt;
+  &lt;img src=&quot;logo.png&quot; alt=&quot;Logo&quot; width=&quot;150&quot;&gt;
+&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">[Logo image] — clicking the image navigates to https://example.com</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">7</span>
+      <span class="qtext">What is the purpose of creating a button as a hyperlink? Explain with syntax.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Sometimes a link needs to look like a button (for better UI/UX) instead of plain underlined text. This is done either by styling an &lt;a&gt; tag with CSS to look like a button, or by using a &lt;button&gt; with an onclick JavaScript handler that changes window.location.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">कधी कधी एखादी लिंक साध्या underline केलेल्या टेक्स्टऐवजी बटणासारखी दिसावी लागते (चांगल्या UI/UX साठी). हे CSS वापरून &lt;a&gt; टॅगला बटणासारखे स्टाईल करून, किंवा &lt;button&gt; ला onclick JavaScript handler देऊन window.location बदलून केले जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;page.html&quot; class=&quot;btn&quot;&gt;Click Me&lt;/a&gt;
+
+&lt;style&gt;
+.btn {
+  padding: 10px 20px;
+  background: #f0b429;
+  color: #12151b;
+  text-decoration: none;
+  border-radius: 6px;
+}
+&lt;/style&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">A styled button-like clickable link labeled &#x27;Click Me&#x27;</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">8</span>
+      <span class="qtext">What is the &lt;marquee&gt; tag in HTML? Explain its attributes and uses.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The &lt;marquee&gt; tag creates scrolling text or images, moving horizontally or vertically. Common attributes: direction (left/right/up/down), scrollamount (speed), behavior (scroll/slide/alternate), bgcolor. It is now considered obsolete/deprecated in modern HTML and CSS animations are preferred, but is still taught for legacy understanding.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;marquee&gt; टॅग हा टेक्स्ट किंवा इमेज आडवी किंवा उभी सरकवण्यासाठी (scrolling) वापरला जातो. सामान्य attributes: direction (left/right/up/down), scrollamount (वेग), behavior (scroll/slide/alternate), bgcolor. आधुनिक HTML मध्ये हा टॅग deprecated मानला जातो आणि त्याऐवजी CSS animations वापरली जातात, पण legacy समजण्यासाठी शिकवला जातो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;marquee direction=&quot;left&quot; scrollamount=&quot;5&quot;&gt;Welcome to my website!&lt;/marquee&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Welcome to my website!  (text scrolls continuously from right to left)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">9</span>
+      <span class="qtext">Explain the HTML bookmark concept. Why is it used?</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A bookmark link lets users jump directly to a specific section within the same page (or another page) instead of scrolling manually. It's created by giving an element an id and linking to it with href="#id". It is used to improve navigation in long pages, like a table of contents.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Bookmark link वापरकर्त्याला हाताने scroll न करता त्याच पेजमधील (किंवा दुसऱ्या पेजमधील) एका विशिष्ट सेक्शनवर थेट नेते. एखाद्या element ला id देऊन आणि href="#id" वापरून लिंक जोडून हे तयार केले जाते. लांब पेजेसमध्ये navigation सोपे करण्यासाठी, जसे table of contents मध्ये, हे वापरले जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;#chapter2&quot;&gt;Go to Chapter 2&lt;/a&gt;
+
+&lt;h2 id=&quot;chapter2&quot;&gt;Chapter 2&lt;/h2&gt;
+&lt;p&gt;Content of chapter 2...&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking &#x27;Go to Chapter 2&#x27; scrolls the page directly to the Chapter 2 heading</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">10</span>
+      <span class="qtext">What is an image map in HTML? Explain usemap, map, and area tags.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">An image map lets different regions of a single image act as separate clickable hyperlinks. The &lt;img&gt; tag uses a usemap attribute pointing to a &lt;map&gt; element (identified by name), which contains one or more &lt;area&gt; tags defining clickable shapes (rect, circle, poly) each with its own href.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Image map एकाच इमेजच्या वेगवेगळ्या भागांना वेगवेगळ्या क्लिक करण्यायोग्य हायपरलिंक्स बनवण्याची सुविधा देतो. &lt;img&gt; टॅगमध्ये usemap attribute असतो जो &lt;map&gt; element ला (name द्वारे ओळखला जाणारा) जोडलेला असतो, ज्यात एक किंवा अधिक &lt;area&gt; टॅग्स असतात जे क्लिक करण्यायोग्य आकार (rect, circle, poly) आणि त्यांचा स्वतःचा href ठरवतात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;img src=&quot;map.jpg&quot; usemap=&quot;#worldmap&quot; alt=&quot;World Map&quot;&gt;
+
+&lt;map name=&quot;worldmap&quot;&gt;
+  &lt;area shape=&quot;rect&quot; coords=&quot;0,0,100,100&quot; href=&quot;asia.html&quot; alt=&quot;Asia&quot;&gt;
+  &lt;area shape=&quot;circle&quot; coords=&quot;200,150,50&quot; href=&quot;europe.html&quot; alt=&quot;Europe&quot;&gt;
+&lt;/map&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking the rectangular region opens asia.html; clicking the circular region opens europe.html</div>
+  </div>
+  <div class="module-desc" style="margin-top:32px;">Programming / Code Questions (1-15)</div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">1</span>
+      <span class="qtext">Write an HTML program to create a simple hyperlink using the &lt;a&gt; tag.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A basic anchor tag with an href attribute pointing to a destination page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">href attribute असलेला एक साधा anchor टॅग, जो एका destination पेजकडे निर्देश करतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;https://example.com&quot;&gt;Visit Example Website&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Visit Example Website  (clickable, navigates to example.com)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">2</span>
+      <span class="qtext">Write an HTML program to create an external link that opens in a new tab using target=&quot;_blank&quot;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Adding target="_blank" to an anchor tag makes the link open in a new browser tab instead of the current one.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">anchor टॅगमध्ये target="_blank" जोडल्यास लिंक सध्याच्या tab ऐवजी नवीन ब्राउझर tab मध्ये उघडते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;https://wikipedia.org&quot; target=&quot;_blank&quot;&gt;Open Wikipedia in New Tab&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Open Wikipedia in New Tab  (opens wikipedia.org in a new browser tab)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">3</span>
+      <span class="qtext">Write an HTML program demonstrating all types of target attributes.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Four links show the four possible target values: _self, _blank, _parent, and _top, each controlling where the linked page opens.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">चार लिंक्स target च्या चार शक्य values दाखवतात: _self, _blank, _parent, आणि _top, प्रत्येक linked page कुठे उघडेल हे ठरवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;page.html&quot; target=&quot;_self&quot;&gt;_self (same tab)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;page.html&quot; target=&quot;_blank&quot;&gt;_blank (new tab)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;page.html&quot; target=&quot;_parent&quot;&gt;_parent (parent frame)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;page.html&quot; target=&quot;_top&quot;&gt;_top (full window)&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Four stacked links, each opening page.html differently as labeled</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">4</span>
+      <span class="qtext">Write an HTML program using absolute URL and relative URL path.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">One image uses a full absolute URL, another uses a relative path pointing to a local folder.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">एक इमेज पूर्ण absolute URL वापरते, तर दुसरी लोकल फोल्डरकडे निर्देश करणारा relative path वापरते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;img src=&quot;https://example.com/images/photo.jpg&quot; alt=&quot;Absolute&quot; width=&quot;150&quot;&gt;
+&lt;img src=&quot;images/photo.jpg&quot; alt=&quot;Relative&quot; width=&quot;150&quot;&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Two images displayed side by side, loaded via absolute and relative paths respectively</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">5</span>
+      <span class="qtext">Write an HTML program to create an internal page link (same page navigation).</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">An anchor with href="#id" jumps to an element with a matching id further down the same page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">href="#id" असलेला anchor त्याच पेजवर पुढे असलेल्या जुळणाऱ्या id च्या element कडे उडी मारतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;#bottom&quot;&gt;Go to Bottom&lt;/a&gt;
+
+&lt;!-- ... lots of content ... --&gt;
+
+&lt;h2 id=&quot;bottom&quot;&gt;You reached the bottom!&lt;/h2&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking &#x27;Go to Bottom&#x27; scrolls the page down to the heading</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">6</span>
+      <span class="qtext">Write an HTML program to create an image as a hyperlink.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Wrapping an &lt;img&gt; tag inside an &lt;a&gt; tag turns the whole image into a clickable link.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;img&gt; टॅगला &lt;a&gt; टॅगच्या आत ठेवल्यास संपूर्ण इमेज क्लिक करण्यायोग्य लिंक बनते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;https://example.com&quot;&gt;
+  &lt;img src=&quot;banner.jpg&quot; alt=&quot;Banner&quot; width=&quot;200&quot;&gt;
+&lt;/a&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">[Banner image] — clicking it navigates to example.com</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">7</span>
+      <span class="qtext">Write an HTML program to create a button that works as a hyperlink.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A &lt;button&gt; element with an onclick handler uses JavaScript to change the page location, behaving like a link.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;button&gt; element वर onclick handler देऊन JavaScript च्या मदतीने page location बदलली जाते, म्हणजे तो लिंकप्रमाणे काम करतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;button onclick=&quot;window.location.href=&#x27;https://example.com&#x27;&quot;&gt;Go to Website&lt;/button&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Go to Website  (clicking the button navigates to example.com)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">8</span>
+      <span class="qtext">Write an HTML program using the &lt;marquee&gt; tag with scrolling text.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The &lt;marquee&gt; tag makes text scroll continuously across the screen.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;marquee&gt; टॅग टेक्स्टला स्क्रीनवर सतत सरकवत ठेवतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;marquee&gt;This is a scrolling announcement!&lt;/marquee&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">This is a scrolling announcement!  (text scrolls right to left continuously)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">9</span>
+      <span class="qtext">Write an HTML program using &lt;marquee&gt; with different directions (left, right, up, down).</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The direction attribute of &lt;marquee&gt; controls which way the content scrolls.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;marquee&gt; चा direction attribute कंटेंट कोणत्या दिशेने सरकेल हे ठरवतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;marquee direction=&quot;left&quot;&gt;Scrolling Left&lt;/marquee&gt;
+&lt;marquee direction=&quot;right&quot;&gt;Scrolling Right&lt;/marquee&gt;
+&lt;marquee direction=&quot;up&quot; height=&quot;100&quot;&gt;Scrolling Up&lt;/marquee&gt;
+&lt;marquee direction=&quot;down&quot; height=&quot;100&quot;&gt;Scrolling Down&lt;/marquee&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Four marquee blocks, each scrolling text in the direction named</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">10</span>
+      <span class="qtext">Write an HTML program to create a bookmark link using id attribute.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Give a target element a unique id, then link to it using href="#id" from anywhere on the page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">target element ला एक unique id द्या, नंतर पेजवर कुठूनही href="#id" वापरून त्याला लिंक करा.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;#about&quot;&gt;About Section&lt;/a&gt;
+
+&lt;h2 id=&quot;about&quot;&gt;About Us&lt;/h2&gt;
+&lt;p&gt;We build web experiences.&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking &#x27;About Section&#x27; jumps to the &#x27;About Us&#x27; heading</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">11</span>
+      <span class="qtext">Write an HTML program to navigate to different sections of a webpage using bookmark links.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A navigation menu at the top links to multiple id'd sections further down the page, creating an in-page table of contents.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">पेजच्या वरती असलेला navigation menu खाली असलेल्या अनेक id दिलेल्या sections कडे लिंक करतो, म्हणजे एक इन-पेज table of contents तयार होतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt; | &lt;a href=&quot;#services&quot;&gt;Services&lt;/a&gt; | &lt;a href=&quot;#contact&quot;&gt;Contact&lt;/a&gt;
+
+&lt;h2 id=&quot;home&quot;&gt;Home&lt;/h2&gt;
+&lt;h2 id=&quot;services&quot;&gt;Services&lt;/h2&gt;
+&lt;h2 id=&quot;contact&quot;&gt;Contact&lt;/h2&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking each nav link jumps directly to its matching section</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">12</span>
+      <span class="qtext">Write an HTML program to create a simple image map with clickable areas.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">An image is linked to a &lt;map&gt; containing &lt;area&gt; tags, each defining a shape (rect/circle) that acts as its own clickable hotspot.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">इमेजला एका &lt;map&gt; शी जोडले जाते ज्यात &lt;area&gt; टॅग्स असतात, प्रत्येक एक shape (rect/circle) ठरवतो जो स्वतःचा क्लिक करण्यायोग्य hotspot बनतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;img src=&quot;buttons.jpg&quot; usemap=&quot;#navmap&quot; alt=&quot;Navigation&quot;&gt;
+
+&lt;map name=&quot;navmap&quot;&gt;
+  &lt;area shape=&quot;rect&quot; coords=&quot;0,0,50,50&quot; href=&quot;home.html&quot; alt=&quot;Home&quot;&gt;
+  &lt;area shape=&quot;circle&quot; coords=&quot;150,25,25&quot; href=&quot;contact.html&quot; alt=&quot;Contact&quot;&gt;
+&lt;/map&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking the rectangle region opens home.html; clicking the circle opens contact.html</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">13</span>
+      <span class="qtext">Write an HTML program using flex-direction property.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">flex-direction on a flex container controls whether items are laid out in a row or column (and reversed variants).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">flex container वर flex-direction हे items row मध्ये की column मध्ये (आणि त्याच्या reverse variants मध्ये) मांडले जातील हे ठरवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;div style=&quot;display:flex; flex-direction:row; gap:10px;&quot;&gt;
+  &lt;div style=&quot;background:#f0b429; padding:20px;&quot;&gt;1&lt;/div&gt;
+  &lt;div style=&quot;background:#5fb3c0; padding:20px;&quot;&gt;2&lt;/div&gt;
+  &lt;div style=&quot;background:#7a611e; padding:20px;&quot;&gt;3&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Three colored boxes arranged left to right in a horizontal row</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">14</span>
+      <span class="qtext">Write an HTML program demonstrating justify-content and align-items in Flexbox.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">justify-content aligns flex items along the main axis (horizontal by default), while align-items aligns them along the cross axis (vertical by default).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">justify-content हे flex items ला main axis वर (डीफॉल्ट horizontal) संरेखित करते, तर align-items हे cross axis वर (डीफॉल्ट vertical) संरेखित करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;div style=&quot;display:flex; justify-content:center; align-items:center; height:150px; background:#1a1f28;&quot;&gt;
+  &lt;div style=&quot;background:#f0b429; padding:20px;&quot;&gt;Centered Box&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">A single box perfectly centered both horizontally and vertically inside its container</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">15</span>
+      <span class="qtext">Write an HTML program to create a responsive card layout using Flexbox.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Flex-wrap allows cards to move to the next line automatically as the screen gets smaller, creating a responsive grid-like layout without CSS Grid.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">flex-wrap मुळे स्क्रीन लहान होताच cards आपोआप पुढच्या ओळीत जातात, म्हणजे CSS Grid शिवायच एक responsive grid-सारखा layout तयार होतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;div style=&quot;display:flex; flex-wrap:wrap; gap:16px;&quot;&gt;
+  &lt;div style=&quot;flex:1 1 200px; background:#1a1f28; padding:20px; border-radius:8px;&quot;&gt;Card 1&lt;/div&gt;
+  &lt;div style=&quot;flex:1 1 200px; background:#1a1f28; padding:20px; border-radius:8px;&quot;&gt;Card 2&lt;/div&gt;
+  &lt;div style=&quot;flex:1 1 200px; background:#1a1f28; padding:20px; border-radius:8px;&quot;&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Three cards side by side on wide screens; they wrap to new rows as the window narrows</div>
+  </div>
+</div>
+
+<div class="module" id="sec-htmlcss">
+  <div class="module-head">
+    <span class="module-index">08</span>
+    <span class="module-title">HTML &amp; CSS Assignment — Basics, Formatting, CSS Types</span>
+  </div>
+  <div class="module-desc">Theory Questions (1-10)</div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">1</span>
+      <span class="qtext">What is HTML? Explain its basic structure.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">HTML (HyperText Markup Language) is the standard markup language used to structure content on the web using elements/tags. Its basic structure has a &lt;!DOCTYPE html&gt; declaration, an &lt;html&gt; root element containing a &lt;head&gt; (metadata, title, links) and a &lt;body&gt; (visible page content).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">HTML (HyperText Markup Language) ही वेब पेजवरील कंटेंटची रचना elements/tags वापरून करण्यासाठीची स्टँडर्ड मार्कअप भाषा आहे. मूळ रचनेत &lt;!DOCTYPE html&gt; declaration, &lt;html&gt; हा root element असतो ज्यात &lt;head&gt; (metadata, title, links) आणि &lt;body&gt; (दिसणारा पेज कंटेंट) असतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">A webpage titled &#x27;My Page&#x27; displaying the heading &#x27;Hello World&#x27;</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">2</span>
+      <span class="qtext">What is the purpose of the &lt;head&gt; tag in HTML?</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The &lt;head&gt; tag holds metadata about the document that isn't displayed directly on the page — things like the page title, character encoding, linked CSS files, favicon, and SEO meta tags. It helps the browser and search engines understand the page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;head&gt; टॅगमध्ये document बद्दलचा metadata असतो जो पेजवर थेट दिसत नाही — जसे page title, character encoding, जोडलेल्या CSS फाइल्स, favicon, आणि SEO साठी meta tags. यामुळे ब्राउझर आणि सर्च इंजिनला पेज समजण्यास मदत होते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">No visible output on page — sets the browser tab title to &#x27;My Website&#x27; and applies style.css</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">3</span>
+      <span class="qtext">Explain the use of the following tags: &lt;title&gt;, &lt;meta&gt;, &lt;style&gt;, &lt;base&gt;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">&lt;title&gt; sets the text shown in the browser tab. &lt;meta&gt; provides metadata like character set, description, or viewport settings. &lt;style&gt; lets you write internal CSS directly in the document. &lt;base&gt; sets a default base URL/target for all relative links on the page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;title&gt; ब्राउझर टॅबमध्ये दिसणारा मजकूर ठरवते. &lt;meta&gt; character set, description, किंवा viewport सारखा metadata देते. &lt;style&gt; मुळे document मध्येच internal CSS लिहिता येते. &lt;base&gt; पेजवरील सर्व relative links साठी डीफॉल्ट base URL/target ठरवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+  &lt;title&gt;Demo Page&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;A demo page&quot;&gt;
+  &lt;style&gt; h1 { color: teal; } &lt;/style&gt;
+  &lt;base href=&quot;https://example.com/&quot; target=&quot;_blank&quot;&gt;
+&lt;/head&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Tab shows &#x27;Demo Page&#x27;; headings render in teal; relative links open example.com pages in new tabs</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">4</span>
+      <span class="qtext">What are meta tags? Explain different types of meta tags.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Meta tags provide metadata about the HTML document that browsers and search engines use but don't display on the page. Common types: charset (character encoding), description (page summary for SEO), keywords, viewport (responsive scaling), and author.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Meta tags हे HTML document बद्दलचा metadata देतात जो ब्राउझर आणि सर्च इंजिन वापरतात पण पेजवर दाखवत नाहीत. सामान्य प्रकार: charset (character encoding), description (SEO साठी पेजचा सारांश), keywords, viewport (responsive scaling), आणि author.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;description&quot; content=&quot;Learn HTML and CSS easily&quot;&gt;
+&lt;meta name=&quot;keywords&quot; content=&quot;HTML, CSS, tutorial&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;meta name=&quot;author&quot; content=&quot;Adnan&quot;&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">No visible output — configures encoding, SEO info, responsiveness, and authorship metadata</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">5</span>
+      <span class="qtext">Explain the three types of CSS with examples.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Inline CSS is written directly in an element's style attribute. Internal CSS is written inside a &lt;style&gt; tag in the document's &lt;head&gt;. External CSS is written in a separate .css file and linked using &lt;link&gt;. External is best for large, maintainable projects.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Inline CSS हे element च्या style attribute मध्ये थेट लिहिले जाते. Internal CSS हे document च्या &lt;head&gt; मधील &lt;style&gt; टॅगमध्ये लिहिले जाते. External CSS हे वेगळ्या .css फाइलमध्ये लिहून &lt;link&gt; ने जोडले जाते. मोठ्या, मेंटेन करण्यायोग्य प्रोजेक्ट्ससाठी External सर्वोत्तम असते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!-- Inline --&gt;
+&lt;p style=&quot;color:blue;&quot;&gt;Inline styled text&lt;/p&gt;
+
+&lt;!-- Internal --&gt;
+&lt;style&gt; p { font-weight:bold; } &lt;/style&gt;
+
+&lt;!-- External --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Paragraph appears blue and bold (styled via inline + internal); external file applies further site-wide styles</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">6</span>
+      <span class="qtext">What are formatting tags in HTML? Explain any five formatting tags.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Formatting tags change how text is visually presented. Examples: &lt;b&gt; bold, &lt;i&gt; italic, &lt;u&gt; underline, &lt;mark&gt; highlights text, &lt;small&gt; reduces text size, &lt;sub&gt;/&lt;sup&gt; for subscript/superscript.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Formatting tags मजकूर कसा दिसतो हे बदलतात. उदाहरणे: &lt;b&gt; ठळक (bold), &lt;i&gt; तिरपे (italic), &lt;u&gt; अधोरेखित (underline), &lt;mark&gt; मजकूर हायलाइट करते, &lt;small&gt; मजकुराचा आकार लहान करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;b&gt;Bold text&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Italic text&lt;/i&gt;&lt;br&gt;
+&lt;u&gt;Underlined text&lt;/u&gt;&lt;br&gt;
+&lt;mark&gt;Highlighted text&lt;/mark&gt;&lt;br&gt;
+&lt;small&gt;Small text&lt;/small&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Bold text
+Italic text
+Underlined text
+Highlighted text (yellow background)
+Small text</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">7</span>
+      <span class="qtext">Differentiate between &lt;b&gt; and &lt;strong&gt;, &lt;i&gt; and &lt;em&gt;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">&lt;b&gt; visually bolds text with no extra meaning, while &lt;strong&gt; bolds text and also signals strong semantic importance (useful for accessibility/screen readers). Similarly, &lt;i&gt; just italicizes text, while &lt;em&gt; italicizes and adds semantic emphasis.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;b&gt; फक्त मजकूर bold दाखवते, त्याला अतिरिक्त अर्थ नसतो, तर &lt;strong&gt; मजकूर bold दाखवतेच पण त्याला महत्त्वाचा (strong) अर्थही देते (accessibility/screen readers साठी उपयुक्त). त्याचप्रमाणे &lt;i&gt; फक्त italic दाखवते, तर &lt;em&gt; italic दाखवतानाच अर्थपूर्ण जोर (emphasis) देते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;b&gt;Bold - visual only&lt;/b&gt;&lt;br&gt;
+&lt;strong&gt;Strong - important meaning&lt;/strong&gt;&lt;br&gt;
+&lt;i&gt;Italic - visual only&lt;/i&gt;&lt;br&gt;
+&lt;em&gt;Emphasis - meaningful stress&lt;/em&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">All four lines appear visually bold/italic, but &lt;strong&gt; and &lt;em&gt; also carry semantic meaning for assistive tech</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">8</span>
+      <span class="qtext">What are semantic tags in HTML? Explain their advantages.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Semantic tags clearly describe their meaning/purpose to both the browser and developer (e.g. &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;footer&gt;) rather than being generic containers. Advantages: better accessibility for screen readers, improved SEO, and more readable/maintainable code.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Semantic tags ब्राउझर आणि डेव्हलपर दोघांनाही त्यांचा अर्थ/उद्देश स्पष्टपणे सांगतात (उदा. &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;footer&gt;), ते साध्या generic containers सारखे नसतात. फायदे: screen readers साठी चांगली accessibility, सुधारित SEO, आणि अधिक वाचनीय/मेंटेन करण्यायोग्य कोड.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;header&gt;&lt;h1&gt;My Site&lt;/h1&gt;&lt;/header&gt;
+&lt;nav&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/nav&gt;
+&lt;article&gt;&lt;p&gt;Main content here&lt;/p&gt;&lt;/article&gt;
+&lt;footer&gt;&lt;p&gt;© 2026&lt;/p&gt;&lt;/footer&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">A structured page with a header, nav bar, article content, and footer — each semantically labeled</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">9</span>
+      <span class="qtext">Explain different CSS color formats: HEX, RGB, RGBA, HSL.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">HEX uses a 6-digit hexadecimal code (#RRGGBB). RGB uses red, green, blue values 0-255, e.g. rgb(255,0,0). RGBA adds an alpha (opacity) value, e.g. rgba(255,0,0,0.5). HSL defines color by hue (0-360), saturation, and lightness percentages, e.g. hsl(0,100%,50%).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">HEX 6-अंकी hexadecimal कोड वापरते (#RRGGBB). RGB मध्ये red, green, blue values 0-255 दरम्यान असतात, उदा. rgb(255,0,0). RGBA मध्ये अतिरिक्त alpha (opacity) value असते, उदा. rgba(255,0,0,0.5). HSL रंग hue (0-360), saturation, आणि lightness टक्केवारीने ठरवते, उदा. hsl(0,100%,50%).</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p style=&quot;color:#ff0000;&quot;&gt;HEX Red&lt;/p&gt;
+&lt;p style=&quot;color:rgb(255,0,0);&quot;&gt;RGB Red&lt;/p&gt;
+&lt;p style=&quot;color:rgba(255,0,0,0.5);&quot;&gt;RGBA Red (transparent)&lt;/p&gt;
+&lt;p style=&quot;color:hsl(0,100%,50%);&quot;&gt;HSL Red&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Four lines of red text, the RGBA one appearing semi-transparent</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">10</span>
+      <span class="qtext">Differentiate between semantic and non-semantic tags with examples.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Semantic tags describe their content's meaning, e.g. &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;footer&gt;. Non-semantic tags like &lt;div&gt; and &lt;span&gt; are generic containers with no inherent meaning — they only group content for styling/scripting purposes.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">Semantic tags त्यांच्या कंटेंटचा अर्थ सांगतात, उदा. &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;footer&gt;. Non-semantic tags जसे &lt;div&gt; आणि &lt;span&gt; हे साधे generic containers असतात ज्यांना स्वतःचा अर्थ नसतो — ते फक्त styling/scripting साठी कंटेंट group करतात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!-- Semantic --&gt;
+&lt;article&gt;This is an article&lt;/article&gt;
+
+&lt;!-- Non-semantic --&gt;
+&lt;div&gt;This is a generic div&lt;/div&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Both display their text; only the &lt;article&gt; conveys meaning to browsers/assistive tech</div>
+  </div>
+  <div class="module-desc" style="margin-top:32px;">Programming Questions (1-20)</div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">1</span>
+      <span class="qtext">Create a basic HTML webpage using html, head, title, body tags.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The minimal skeleton every HTML page needs: html as root, head for metadata/title, body for visible content.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">प्रत्येक HTML पेजला लागणारा किमान सांगाडा: html हा root, head मध्ये metadata/title, body मध्ये दिसणारा कंटेंट.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Basic Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This is my first webpage.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">This is my first webpage.  (tab title: Basic Page)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">2</span>
+      <span class="qtext">Create a webpage using different heading tags (h1 to h6).</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">HTML provides six levels of headings, h1 being the largest/most important and h6 the smallest.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">HTML मध्ये सहा स्तरांचे headings असतात, h1 सर्वात मोठा/महत्त्वाचा आणि h6 सर्वात लहान असतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Six headings displayed in decreasing font size from Heading 1 to Heading 6</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">3</span>
+      <span class="qtext">Create a webpage using paragraph, line break, and horizontal line tags.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">&lt;p&gt; defines a paragraph, &lt;br&gt; inserts a single line break, and &lt;hr&gt; draws a horizontal divider line.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;p&gt; paragraph दर्शवते, &lt;br&gt; एक ओळ ब्रेक टाकते, आणि &lt;hr&gt; एक आडवी divider रेषा काढते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p&gt;This is a paragraph.&lt;br&gt;This is a new line within it.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;This is another paragraph after a horizontal line.&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">This is a paragraph.
+This is a new line within it.
+———————————
+This is another paragraph after a horizontal line.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">4</span>
+      <span class="qtext">Create a webpage using title and meta tags.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Combines a &lt;title&gt; for the browser tab with &lt;meta&gt; tags for charset and description.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">ब्राउझर टॅबसाठी &lt;title&gt; आणि charset व description साठी &lt;meta&gt; टॅग्स एकत्र वापरले जातात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;A sample page about meta tags&quot;&gt;
+  &lt;title&gt;Meta Tags Demo&lt;/title&gt;
+&lt;/head&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Browser tab shows &#x27;Meta Tags Demo&#x27;; no visible body content in this snippet</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">5</span>
+      <span class="qtext">Create a webpage using the &lt;base&gt; tag.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The &lt;base&gt; tag sets a default URL/target that applies to every relative link and target on the page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;base&gt; टॅग पेजवरील प्रत्येक relative link आणि target साठी डीफॉल्ट URL/target ठरवतो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+  &lt;base href=&quot;https://example.com/&quot; target=&quot;_blank&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href=&quot;about.html&quot;&gt;About&lt;/a&gt;
+&lt;/body&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Clicking &#x27;About&#x27; opens https://example.com/about.html in a new tab, thanks to &lt;base&gt;</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">6</span>
+      <span class="qtext">Create a webpage using inline CSS to apply text color and background color.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">The style attribute is used directly on an element to set color properties without a separate stylesheet.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">style attribute थेट element वर वापरून, वेगळ्या stylesheet शिवाय रंग properties सेट केल्या जातात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p style=&quot;color:white; background-color:#333; padding:10px;&quot;&gt;Styled inline paragraph&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Styled inline paragraph  (white text on a dark gray background)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">7</span>
+      <span class="qtext">Create a webpage using internal CSS for styling headings and paragraphs.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A &lt;style&gt; block inside &lt;head&gt; defines rules that apply to all matching elements in the body.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;head&gt; मधील &lt;style&gt; ब्लॉक असे rules ठरवतो जे body मधील सर्व जुळणाऱ्या elements ला लागू होतात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+&lt;style&gt;
+  h1 { color: navy; }
+  p { color: gray; font-size: 16px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Styled Heading&lt;/h1&gt;
+  &lt;p&gt;Styled paragraph text.&lt;/p&gt;
+&lt;/body&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Navy-colored heading followed by gray paragraph text</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">8</span>
+      <span class="qtext">Create a webpage using external CSS.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">CSS rules are written in a separate .css file and linked into the HTML document with a &lt;link&gt; tag.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">CSS rules वेगळ्या .css फाइलमध्ये लिहून &lt;link&gt; टॅगने HTML document शी जोडले जातात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;!-- index.html --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;h1&gt;Hello&lt;/h1&gt;
+
+/* style.css */
+h1 { color: green; text-align: center; }</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Centered heading &#x27;Hello&#x27; displayed in green, styled entirely from style.css</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">9</span>
+      <span class="qtext">Create a webpage demonstrating the use of formatting tags: &lt;b&gt;, &lt;strong&gt;, &lt;i&gt;, &lt;em&gt;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Shows the four common text-emphasis tags used together in one paragraph.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">एकाच परिच्छेदात एकत्र वापरलेले चार सामान्य text-emphasis टॅग्स दाखवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p&gt;&lt;b&gt;Bold&lt;/b&gt;, &lt;strong&gt;Strong&lt;/strong&gt;, &lt;i&gt;Italic&lt;/i&gt;, and &lt;em&gt;Emphasized&lt;/em&gt; text.&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Bold, Strong, Italic, and Emphasized text.  (each word styled accordingly)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">10</span>
+      <span class="qtext">Create a webpage using &lt;mark&gt;, &lt;small&gt;, &lt;del&gt;, &lt;ins&gt;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">&lt;mark&gt; highlights text, &lt;small&gt; shrinks it, &lt;del&gt; shows deleted/strikethrough text, &lt;ins&gt; shows inserted/underlined text.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;mark&gt; मजकूर हायलाइट करते, &lt;small&gt; मजकूर लहान करते, &lt;del&gt; काढलेला मजकूर (strikethrough) दाखवते, &lt;ins&gt; नव्याने जोडलेला (underlined) मजकूर दाखवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p&gt;&lt;mark&gt;Highlighted&lt;/mark&gt; &lt;small&gt;small text&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;old price $50&lt;/del&gt; &lt;ins&gt;new price $40&lt;/ins&gt;&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Highlighted small text
+old price $50 (strikethrough) new price $40 (underlined)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">11</span>
+      <span class="qtext">Create a webpage displaying subscript and superscript text.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">&lt;sub&gt; lowers text below the baseline (e.g. chemical formulas), &lt;sup&gt; raises it above (e.g. exponents).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;sub&gt; मजकूर baseline च्या खाली आणते (उदा. रासायनिक सूत्रे), &lt;sup&gt; मजकूर वर उचलते (उदा. घातांक).</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O and E = mc&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">H₂O and E = mc²</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">12</span>
+      <span class="qtext">Create a webpage using semantic tags: &lt;header&gt;, &lt;nav&gt;, &lt;section&gt;, &lt;footer&gt;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Structures a page into meaningful landmark regions instead of generic divs.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">साध्या divs ऐवजी पेजला अर्थपूर्ण landmark विभागांमध्ये तयार करते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;header&gt;&lt;h1&gt;My Blog&lt;/h1&gt;&lt;/header&gt;
+&lt;nav&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; | &lt;a href=&quot;#&quot;&gt;Blog&lt;/a&gt;&lt;/nav&gt;
+&lt;section&gt;&lt;p&gt;Welcome to my blog!&lt;/p&gt;&lt;/section&gt;
+&lt;footer&gt;&lt;p&gt;© 2026 My Blog&lt;/p&gt;&lt;/footer&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">A page with a title header, nav links, a welcome section, and a copyright footer</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">13</span>
+      <span class="qtext">Create a simple article webpage using &lt;article&gt; and &lt;aside&gt;.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">&lt;article&gt; holds independent, self-contained content (like a blog post), while &lt;aside&gt; holds related but secondary content (like a sidebar).</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">&lt;article&gt; हे स्वतंत्र, संपूर्ण कंटेंट (जसे blog post) ठेवते, तर &lt;aside&gt; संबंधित पण दुय्यम कंटेंट (जसे sidebar) ठेवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;article&gt;
+  &lt;h2&gt;How to Learn HTML&lt;/h2&gt;
+  &lt;p&gt;Start with the basics of tags and structure...&lt;/p&gt;
+&lt;/article&gt;
+&lt;aside&gt;
+  &lt;p&gt;Related: CSS Basics, JavaScript Basics&lt;/p&gt;
+&lt;/aside&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Main article about learning HTML, with a sidebar suggesting related topics</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">14</span>
+      <span class="qtext">Create a webpage applying different text colors using color names.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">CSS accepts predefined color keywords like red, blue, green directly as color values.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">CSS मध्ये red, blue, green सारखे आधीच ठरलेले color keywords थेट color value म्हणून वापरता येतात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p style=&quot;color:red;&quot;&gt;Red Text&lt;/p&gt;
+&lt;p style=&quot;color:blue;&quot;&gt;Blue Text&lt;/p&gt;
+&lt;p style=&quot;color:green;&quot;&gt;Green Text&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Three lines of text, each in the named color</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">15</span>
+      <span class="qtext">Create a webpage using HEX color values.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">HEX colors use a # followed by six hexadecimal digits representing red, green, and blue intensity.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">HEX colors मध्ये # नंतर सहा hexadecimal अंक असतात जे red, green, आणि blue ची तीव्रता दर्शवतात.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p style=&quot;color:#ff5733;&quot;&gt;Orange-red text using HEX&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Orange-red text using HEX  (displayed in color #ff5733)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">16</span>
+      <span class="qtext">Create a webpage using RGB color values.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">rgb(r, g, b) defines a color using red, green, and blue values each ranging from 0 to 255.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">rgb(r, g, b) मध्ये red, green, आणि blue value प्रत्येकी 0 ते 255 दरम्यान असते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p style=&quot;color:rgb(30,144,255);&quot;&gt;Dodger blue text using RGB&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Dodger blue text using RGB  (displayed in a bright blue color)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">17</span>
+      <span class="qtext">Create a webpage using RGBA color values with transparency effect.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">rgba(r, g, b, a) is like RGB but with an added alpha channel (0 to 1) controlling opacity/transparency.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">rgba(r, g, b, a) हे RGB सारखेच आहे पण त्यात अतिरिक्त alpha channel (0 ते 1) असते जी opacity/transparency ठरवते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;div style=&quot;background-color:rgba(255,0,0,0.4); padding:20px;&quot;&gt;Semi-transparent red background&lt;/div&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">A box with light, semi-transparent red background showing text through it</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">18</span>
+      <span class="qtext">Create a webpage using HSL color values.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">hsl(hue, saturation%, lightness%) defines color using hue angle (0-360), saturation percentage, and lightness percentage.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">hsl(hue, saturation%, lightness%) मध्ये hue angle (0-360), saturation टक्केवारी, आणि lightness टक्केवारी वापरून रंग ठरवला जातो.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;p style=&quot;color:hsl(280,80%,60%);&quot;&gt;Purple text using HSL&lt;/p&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Purple text using HSL  (displayed in a vivid purple shade)</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">19</span>
+      <span class="qtext">Create a colorful student profile webpage using semantic tags, formatting tags, internal CSS.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">Combines a &lt;header&gt; for the name, &lt;section&gt; for details with formatting tags (&lt;b&gt;, &lt;em&gt;), and internal CSS for color/layout — all in one cohesive profile page.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">नाव दाखवण्यासाठी &lt;header&gt;, formatting tags (&lt;b&gt;, &lt;em&gt;) सोबत माहिती दाखवण्यासाठी &lt;section&gt;, आणि रंग/लेआउटसाठी internal CSS — हे सर्व एकत्र करून एक प्रोफाइल पेज तयार केले जाते.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+&lt;style&gt;
+  header { background:#f0b429; padding:20px; text-align:center; }
+  section { padding:20px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;&lt;h1&gt;Adnan Khan&lt;/h1&gt;&lt;/header&gt;
+  &lt;section&gt;
+    &lt;p&gt;&lt;b&gt;Course:&lt;/b&gt; Full Stack Development&lt;/p&gt;
+    &lt;p&gt;&lt;em&gt;Passionate about web development&lt;/em&gt;&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/body&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">An amber header showing the student&#x27;s name, followed by a details section with bold and italic text</div>
+  </div>
+
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">20</span>
+      <span class="qtext">Create a complete webpage that includes title tag, meta tags, semantic tags, formatting tags, CSS color properties, all three types of CSS.</span>
+    </div>
+    <div class="explain">
+      <div class="exp-block en">
+        <div class="exp-label">Explanation (EN)</div>
+        <div class="exp-text">A capstone page combining everything: &lt;title&gt; and &lt;meta&gt; in head, semantic layout (&lt;header&gt;/&lt;section&gt;/&lt;footer&gt;), formatting tags for emphasis, and all three CSS types (inline, internal, external) working together.</div>
+      </div>
+      <div class="exp-block mr">
+        <div class="exp-label">स्पष्टीकरण (MR)</div>
+        <div class="exp-text">सर्व गोष्टी एकत्र करणारे capstone पेज: head मध्ये &lt;title&gt; आणि &lt;meta&gt;, semantic layout (&lt;header&gt;/&lt;section&gt;/&lt;footer&gt;), emphasis साठी formatting tags, आणि तिन्ही प्रकारच्या CSS (inline, internal, external) एकत्र वापरलेले.</div>
+      </div>
+    </div>
+    <div class="code-label">Code</div>
+    <pre class="code">&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Complete Demo Page&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;style&gt; h1 { color: teal; } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;&lt;h1&gt;Welcome&lt;/h1&gt;&lt;/header&gt;
+  &lt;section&gt;
+    &lt;p style=&quot;color:#444;&quot;&gt;This page uses &lt;b&gt;bold&lt;/b&gt; and &lt;em&gt;emphasis&lt;/em&gt;.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;footer&gt;&lt;p&gt;© 2026&lt;/p&gt;&lt;/footer&gt;
+&lt;/body&gt;</pre>
+    <div class="output-label">Expected Output</div>
+    <div class="output">Teal &#x27;Welcome&#x27; heading, a styled paragraph with bold/emphasized words, and a footer — all three CSS types applied together</div>
+  </div>
+</div>
+
+</main>
+</body>
+</html>

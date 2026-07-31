@@ -29,92 +29,175 @@
         <form action="">
             <label for="search"></label>
             <input type="search" placeholder="Search by city, address, or station name">
+            <button type="close" id="clearBtn">x</button>
         </form>
     </section>
     <section class="map-section">
         <div class="map">
-            <div class="marker m1"></div>
-            <div class="marker m2"></div>
-            <div class="marker m3"></div>
-            <div class="marker m4"></div>
-            <div class="marker m5"></div>
-            <div class="marker m6"></div>
-            <div class="marker m7"></div>
+
+            <div class="marker m1">
+                <span class="station-name">Statiq EV</span>
+                <div class="tooltip">
+                    <strong>Statiq EV Charging</strong>
+                    <p>📍 Sadar, Nagpur</p>
+                    <p>⚡ 6 Ports</p>
+                    <p>🟢 4 Available</p>
+                </div>
+            </div>
+
+            <div class="marker m2">
+                <span class="station-name">Tata Power</span>
+                <div class="tooltip">
+                    <strong>Tata Power EZ Charge</strong>
+                    <p>📍 Sitabuldi</p>
+                    <p>⚡ 8 Ports</p>
+                    <p>🟢 6 Available</p>
+                </div>
+            </div>
+
+            <div class="marker m3">
+                <span class="station-name">ChargeZone</span>
+                <div class="tooltip">
+                    <strong>ChargeZone</strong>
+                    <p>📍 Wardha Road</p>
+                    <p>⚡ 10 Ports</p>
+                    <p>🟢 8 Available</p>
+                </div>
+            </div>
+
+            <div class="marker m4">
+                <span class="station-name">Jio-bp</span>
+                <div class="tooltip">
+                    <strong>Jio-bp Pulse</strong>
+                    <p>📍 MIHAN</p>
+                    <p>⚡ 12 Ports</p>
+                    <p>🟢 10 Available</p>
+                </div>
+            </div>
+
+            <div class="marker m5">
+                <span class="station-name">Zeon</span>
+                <div class="tooltip">
+                    <strong>Zeon Charging</strong>
+                    <p>📍 Dharampeth</p>
+                    <p>⚡ 6 Ports</p>
+                    <p>🟢 5 Available</p>
+                </div>
+            </div>
+
+            <div class="marker m6">
+                <span class="station-name">Ather</span>
+                <div class="tooltip">
+                    <strong>Ather Grid</strong>
+                    <p>📍 Ramdaspeth</p>
+                    <p>⚡ Fast Charging</p>
+                    <p>🟢 Available</p>
+                </div>
+            </div>
+
+            <div class="marker m7">
+                <span class="station-name">ElectricPe</span>
+                <div class="tooltip">
+                    <strong>ElectricPe</strong>
+                    <p>📍 Manish Nagar</p>
+                    <p>⚡ 8 Ports</p>
+                    <p>🟢 7 Available</p>
+                </div>
+            </div>
+
         </div>
         <div class="station-list">
+            <p id="noResult"
+                style="display: none;color: rgb(245, 241, 241);text-align: center;border-radius:15px; padding: 10px 0; background-color: #c97c3d;">
+                No Station Found
+            </p>
+
             <div class="station-card active">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>Statiq EV Charging Station - Sadar</h3>
+                    <div class="station-meta">1.2 km • 6 Ports • CCS2, Type 2</div>
+                    <div class="availability"><span class="dot"></span>4 of 6 Available</div>
+                    <div class="station-address">📍 Sadar, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
-            </div>
-            <div class="station-card">
-                <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
-                </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹18/kWh</div>
             </div>
 
             <div class="station-card">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>Tata Power EZ Charge - Sitabuldi</h3>
+                    <div class="station-meta">2.4 km • 8 Ports • CCS2, AC Type 2</div>
+                    <div class="availability"><span class="dot"></span>6 of 8 Available</div>
+                    <div class="station-address">📍 Sitabuldi, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹17/kWh</div>
             </div>
 
             <div class="station-card">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>ChargeZone - Wardha Road</h3>
+                    <div class="station-meta">4.1 km • 10 Ports • CCS2, CHAdeMO</div>
+                    <div class="availability"><span class="dot"></span>8 of 10 Available</div>
+                    <div class="station-address">📍 Wardha Road, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹19/kWh</div>
             </div>
 
             <div class="station-card">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>Jio-bp Pulse - MIHAN</h3>
+                    <div class="station-meta">6.8 km • 12 Ports • CCS2, Type 2</div>
+                    <div class="availability"><span class="dot"></span>10 of 12 Available</div>
+                    <div class="station-address">📍 MIHAN, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹20/kWh</div>
             </div>
 
             <div class="station-card">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>Zeon Charging Station - Dharampeth</h3>
+                    <div class="station-meta">3.5 km • 6 Ports • CCS2, Type 2</div>
+                    <div class="availability"><span class="dot"></span>5 of 6 Available</div>
+                    <div class="station-address">📍 Dharampeth, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹18/kWh</div>
             </div>
+
             <div class="station-card">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>Relux Electric - Civil Lines</h3>
+                    <div class="station-meta">2.8 km • 4 Ports • AC Type 2</div>
+                    <div class="availability"><span class="dot"></span>3 of 4 Available</div>
+                    <div class="station-address">📍 Civil Lines, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹16/kWh</div>
             </div>
+
             <div class="station-card">
                 <div class="station-info">
-                    <h3>Riverside Supercharge Hub</h3>
-                    <div class="station-meta">0.4 mi · 8 ports · CCS, NACS</div>
-                    <div class="availability"><span class="dot"></span>6 of 8 available</div>
+                    <h3>ElectricPe Hub - Manish Nagar</h3>
+                    <div class="station-meta">7.3 km • 8 Ports • CCS2, Type 2</div>
+                    <div class="availability"><span class="dot"></span>7 of 8 Available</div>
+                    <div class="station-address">📍 Manish Nagar, Nagpur</div>
                 </div>
-                <div class="price">$0.38/kWh</div>
+                <div class="price">₹18/kWh</div>
             </div>
+
+            <div class="station-card">
+                <div class="station-info">
+                    <h3>Ather Grid - Ramdaspeth</h3>
+                    <div class="station-meta">2.1 km • 5 Ports • Ather, Type 2</div>
+                    <div class="availability"><span class="dot"></span>4 of 5 Available</div>
+                    <div class="station-address">📍 Ramdaspeth, Nagpur</div>
+                </div>
+                <div class="price">₹15/kWh</div>
+            </div>
+
         </div>
     </section>
     <footer>
         <p>© 2026 All Rights Reserved. Design & Developed by Trupty Kavatalwar.</p>
     </footer>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
